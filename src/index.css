@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4fbf8;
+  font-family: 'Hanken Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100svh;
+  display: block;
+}
+
+.skew-bg {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+.diagonal-accent {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(45deg, transparent 48%, #006a61 48%, #006a61 52%, transparent 52%);
+  opacity: 0.1;
+  top: 0;
+  left: -50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cta-clip {
+  clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 0 100%);
+}
+
+.hard-shadow {
+  box-shadow: 4px 4px 0px 0px #161d1c;
+}
+
+.hover-shift:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px #161d1c;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
