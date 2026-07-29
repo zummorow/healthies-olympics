@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './index.css';
 import logo from './assets/logo.png';
 import tenisMejaIcon from './assets/icons/tenis-meja.svg';
@@ -85,9 +86,13 @@ function App() {
             <div className="inline-block bg-tertiary text-on-tertiary px-4 py-1 font-label-caps text-label-caps mb-stack-md hard-shadow">
               EST. 2026 • GLOBAL FINALS
             </div>
-            <h1 className="font-display-lg text-display-lg text-on-background mb-stack-sm leading-[0.9]">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="font-display-lg text-display-lg text-on-background mb-stack-sm leading-[0.9]">
               HEALTHIES<br />OLYMPICS <span className="text-primary">2026</span>
-            </h1>
+            </motion.h1>
             <p className="font-body-md text-body-md text-on-surface-variant max-w-lg mb-stack-lg">
               Transform your workforce through the ultimate intersection of competitive sports and advanced wellness analytics. Precision-engineered for high-performing corporate teams.
             </p>
@@ -115,7 +120,12 @@ function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-stack-md">
             {/* Large Feature Card */}
-            <div className="md:col-span-2 md:row-span-2 bg-surface-container-lowest p-stack-lg border-2 border-on-surface relative hard-shadow">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="md:col-span-2 md:row-span-2 bg-surface-container-lowest p-stack-lg border-2 border-on-surface relative hard-shadow">
               <div className="bg-primary text-on-primary w-12 h-12 flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined">analytics</span>
               </div>
@@ -130,7 +140,7 @@ function App() {
                 <div className="w-full bg-primary h-[60%]"></div>
                 <div className="w-full bg-primary h-[85%]"></div>
               </div>
-            </div>
+            </motion.div>
             {/* Secondary Cards */}
             <div className="md:col-span-2 bg-primary p-stack-lg flex flex-col justify-between border-2 border-on-surface hard-shadow text-on-primary">
               <div className="flex justify-between items-start">
@@ -167,14 +177,19 @@ function App() {
           </div>
           <div id="categories" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
             {sportsCategories.map((category, index) => (
-              <div key={index} className={`group relative overflow-hidden border-l-2 ${category.color} pl-8`}>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                key={index} className={`group relative overflow-hidden border-l-2 ${category.color} pl-8`}>
                 <div className={`absolute -left-2 top-0 bottom-0 w-1 ${category.bg} group-hover:w-2 transition-all`}></div>
                 <img src={category.icon} alt={category.name} className="w-12 h-12 mb-6 filter invert brightness-0 opacity-80" />
                 <h3 className="font-headline-lg text-headline-lg-mobile mb-4">{category.name}</h3>
                 <div className={`flex items-center gap-2 ${category.text} font-bold cursor-pointer group-hover:translate-x-4 transition-transform`}>
                   EXPLORE EVENTS <span className="material-symbols-outlined">arrow_forward</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
