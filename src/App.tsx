@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import './index.css';
 import logo from './assets/logo.png';
@@ -32,7 +32,7 @@ const sportsCategories = [
   { name: 'Sang Juara Season II', icon: juaraIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
 ];
 
-function App() {
+function App() { const [activeSection, setActiveSection] = useState<string>('hero');
   useEffect(() => {
     const elements = document.querySelectorAll('.hard-shadow') as NodeListOf<HTMLElement>;
     const handleMouseDown = (e: Event) => {
@@ -61,6 +61,28 @@ function App() {
     };
   }, []);
 
+  // Update active navigation based on scroll position
+  useEffect(() => {
+    const sections = ['hero', 'events', 'schedule'];
+    const handleScroll = () => {
+      let current = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80) {
+            current = id;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="text-on-surface">
       {/* TopNavBar Shell */}
@@ -69,9 +91,9 @@ function App() {
           <img alt="Healthies Olympics Logo" className="h-12 w-auto object-contain" src={logo} />
         </div>
         <div className="hidden md:flex gap-8 items-center">
-          <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#hero">Home</a>
-          <a className="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#events">Events</a>
-          <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#schedule">Schedule</a>
+          <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'hero' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#hero">Home</a>
+          <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'events' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#events">Events</a>
+          <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'schedule' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#schedule">Schedule</a>
           <button className="bg-primary text-on-primary px-6 py-2 cta-clip font-bold active:translate-x-1 active:translate-y-1 transition-transform">Join Now</button>
         </div>
         <button className="md:hidden material-symbols-outlined text-primary">menu</button>
@@ -114,8 +136,8 @@ function App() {
       <section id="about" className="py-24 bg-surface-container-low relative overflow-hidden">
         <div className="container mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="mb-stack-lg border-l-8 border-tertiary pl-6">
-            <h2 className="font-headline-lg text-headline-lg text-on-background">THE KINETIC STANDARD</h2>
-            <p className="font-label-caps text-label-caps text-tertiary">CORPORATE WELLNESS REINVENTED</p>
+            <h2 className="font-headline-lg text-headline-lg text-on-background">ABOUT</h2>
+            <p className="font-label-caps text-label-caps text-tertiary">FESTIVAL OLAHRAGA DAN KESEHATAN PEGAWAI KEMENTERIAN KESEHATAN REPUBLIK INDONESIA</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-stack-md">
             {/* Large Feature Card */}
