@@ -69,10 +69,9 @@ function App() {
           <img alt="Healthies Olympics Logo" className="h-12 w-auto object-contain" src={logo} />
         </div>
         <div className="hidden md:flex gap-8 items-center">
+          <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#hero">Home</a>
           <a className="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#events">Events</a>
-          <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#categories">Categories</a>
           <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#schedule">Schedule</a>
-          <a className="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200" href="#registration">Registration</a>
           <button className="bg-primary text-on-primary px-6 py-2 cta-clip font-bold active:translate-x-1 active:translate-y-1 transition-transform">Join Now</button>
         </div>
         <button className="md:hidden material-symbols-outlined text-primary">menu</button>
@@ -86,7 +85,7 @@ function App() {
             <div className="inline-block bg-tertiary text-on-tertiary px-4 py-1 font-label-caps text-label-caps mb-stack-md hard-shadow">
               EST. 2026 • GLOBAL FINALS
             </div>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -94,7 +93,7 @@ function App() {
               HEALTHIES<br />OLYMPICS <span className="text-primary">2026</span>
             </motion.h1>
             <p className="font-body-md text-body-md text-on-surface-variant max-w-lg mb-stack-lg">
-              Transform your workforce through the ultimate intersection of competitive sports and advanced wellness analytics. Precision-engineered for high-performing corporate teams.
+              Festival Olahraga dan Kesehatan Pegawai Kementerian Kesehatan Republik Indonesia
             </p>
             <div className="flex flex-wrap gap-stack-md">
               <button className="bg-primary text-on-primary px-10 py-4 cta-clip font-headline-lg-mobile text-headline-lg-mobile hard-shadow hover-shift transition-all" style={{ transform: "translate(0px, 0px)", boxShadow: "rgb(22, 29, 28) 4px 4px 0px 0px" }}>
@@ -120,7 +119,7 @@ function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-stack-md">
             {/* Large Feature Card */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -129,9 +128,9 @@ function App() {
               <div className="bg-primary text-on-primary w-12 h-12 flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined">analytics</span>
               </div>
-              <h3 className="font-headline-lg text-headline-lg mb-4">Precision Analytics</h3>
+              <h3 className="font-headline-lg text-headline-lg mb-4">Dikuti 8 Unit Utama</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Every participant is equipped with high-fidelity biometric sensors tracking performance, recovery, and cardiac stress in real-time. We don't just measure speed; we measure metabolic efficiency.
+                Kompetisi antar Unit Utama Kemenkes.
               </p>
               <div className="mt-12 h-48 w-full bg-surface-container border-t-2 border-outline-variant flex items-end p-4 gap-2">
                 <div className="w-full bg-primary h-[40%]"></div>
@@ -144,22 +143,22 @@ function App() {
             {/* Secondary Cards */}
             <div className="md:col-span-2 bg-primary p-stack-lg flex flex-col justify-between border-2 border-on-surface hard-shadow text-on-primary">
               <div className="flex justify-between items-start">
-                <h3 className="font-headline-lg text-headline-lg">Global Hierarchy</h3>
+                <h3 className="font-headline-lg text-headline-lg">Medali Olympics</h3>
                 <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
               </div>
               <p className="font-body-md text-body-md mt-4 opacity-90">
-                Compete on a worldwide leaderboard against the top Fortune 500 health pioneers.
+                Dari 13 Cabang Olahraga.
               </p>
             </div>
             <div className="bg-tertiary-container p-stack-lg border-2 border-on-surface hard-shadow">
               <h4 className="font-label-caps text-label-caps mb-2">PARTICIPANTS</h4>
-              <div className="font-display-lg text-[48px] leading-none mb-2">12K+</div>
-              <p className="font-body-md text-body-md text-on-tertiary-container">Athletes already registered for 2026.</p>
+              <div className="font-display-lg text-[48px] leading-none mb-2">100+</div>
+              <p className="font-body-md text-body-md text-on-tertiary-container">100 Peserta lebih mengikuti kompetisi.</p>
             </div>
             <div className="bg-surface-container-highest p-stack-lg border-2 border-on-surface hard-shadow">
-              <h4 className="font-label-caps text-label-caps mb-2">VENUES</h4>
-              <div className="font-display-lg text-[48px] leading-none mb-2">24</div>
-              <p className="font-body-md text-body-md text-on-surface-variant">High-performance training hubs.</p>
+              <h4 className="font-label-caps text-label-caps mb-2">DISCIPLINES</h4>
+              <div className="font-display-lg text-[48px] leading-none mb-2">13</div>
+              <p className="font-body-md text-body-md text-on-surface-variant">Cabang olahraga yang dilombakan</p>
             </div>
           </div>
         </div>
@@ -177,7 +176,7 @@ function App() {
           </div>
           <div id="categories" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
             {sportsCategories.map((category, index) => (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
