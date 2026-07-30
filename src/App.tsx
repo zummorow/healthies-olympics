@@ -32,7 +32,8 @@ const sportsCategories = [
   { name: 'Sang Juara Season II', icon: juaraIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
 ];
 
-function App() { const [activeSection, setActiveSection] = useState<string>('hero');
+function App() {
+  const [activeSection, setActiveSection] = useState<string>('hero');
   useEffect(() => {
     const elements = document.querySelectorAll('.hard-shadow') as NodeListOf<HTMLElement>;
     const handleMouseDown = (e: Event) => {
@@ -232,25 +233,17 @@ function App() { const [activeSection, setActiveSection] = useState<string>('her
               <div className="space-y-4">
                 {/* Schedule Item */}
                 <div className="flex items-center gap-8 p-6 bg-surface-container hover:bg-surface-container-high border-b-2 border-on-surface group transition-colors">
-                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32">MAR 12</div>
+                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32">Agu 1</div>
                   <div className="flex-grow">
                     <h4 className="font-headline-lg text-headline-lg-mobile">Team Registration Opens</h4>
                     <p className="font-body-md text-body-md text-on-surface-variant">Global portal activation for all corporate entities.</p>
                   </div>
                   <div className="material-symbols-outlined group-hover:rotate-45 transition-transform">north_east</div>
                 </div>
-                {/* Schedule Item */}
-                <div className="flex items-center gap-8 p-6 bg-surface-container hover:bg-surface-container-high border-b-2 border-on-surface group transition-colors">
-                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32">APR 05</div>
-                  <div className="flex-grow">
-                    <h4 className="font-headline-lg text-headline-lg-mobile">Initial Biometric Baseline</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant">Remote participant screening and kit distribution.</p>
-                  </div>
-                  <div className="material-symbols-outlined group-hover:rotate-45 transition-transform">north_east</div>
-                </div>
+
                 {/* Schedule Item */}
                 <div className="flex items-center gap-8 p-6 bg-surface-container-low border-b-2 border-on-surface group transition-colors">
-                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32 text-primary font-black">JUN 20</div>
+                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32 text-primary font-black">Agu 7</div>
                   <div className="flex-grow">
                     <h4 className="font-headline-lg text-headline-lg-mobile">THE MAIN EVENT</h4>
                     <p className="font-body-md text-body-md text-on-surface-variant">Opening ceremony and Day 1 competition heats.</p>
@@ -266,10 +259,12 @@ function App() { const [activeSection, setActiveSection] = useState<string>('her
       {/* CTA Bar */}
       <div id="registration" className="bg-tertiary py-8 overflow-hidden">
         <div className="flex whitespace-nowrap gap-12 animate-[marquee_20s_linear_infinite]">
-          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Performance Driven • </span>
-          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Corporate Wellness • </span>
-          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Performance Driven • </span>
-          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Corporate Wellness • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Sportivitas, Kerja Sama, dan Keunggulan • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Menjalin Silaturahmi, Meningkatkan Soliditas • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Prestasi, Persahabatan, dan Kemajuan • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Sportivitas, Kerja Sama, dan Keunggulan • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Menjalin Silaturahmi, Meningkatkan Soliditas • </span>
+          <span className="text-on-tertiary font-display-lg text-display-lg uppercase opacity-20">Prestasi, Persahabatan, dan Kemajuan • </span>
         </div>
       </div>
 
@@ -277,11 +272,9 @@ function App() { const [activeSection, setActiveSection] = useState<string>('her
       <footer className="bg-inverse-surface dark:bg-surface-container-highest text-primary-fixed dark:text-primary font-body-md text-body-md w-full mt-stack-lg flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg">
         <div className="mb-stack-md md:mb-0 text-center md:text-left">
           <div className="font-headline-lg text-headline-lg text-surface-container-lowest mb-2">HEALTHIES OLYMPICS</div>
-          <p className="text-surface-variant opacity-70">© 2024 HEALTHIES OLYMPICS. PERFORMANCE DRIVEN.</p>
+          <p className="text-surface-variant opacity-70">© 2026 HEALTHIES OLYMPICS. PERFORMANCE DRIVEN.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-8 text-surface-variant">
-          <a className="hover:text-tertiary-fixed transition-colors" href="#">Privacy Policy</a>
-          <a className="hover:text-tertiary-fixed transition-colors" href="#">Terms of Service</a>
           <a className="hover:text-tertiary-fixed transition-colors" href="#">Contact Support</a>
           <a className="hover:text-tertiary-fixed transition-colors" href="#">Corporate Wellness</a>
         </div>
