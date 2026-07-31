@@ -31,7 +31,7 @@ const sportsCategories = [
   { name: 'PES Cup', icon: pesIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
   { name: 'Mobile Legend', icon: mlIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
   { name: 'Sang Juara Season II', icon: juaraIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Masterchef', icon: masterchefIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
+  { name: 'Masterchef', icon: masterchefIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
 ];
 
 function App() {
@@ -125,8 +125,8 @@ function App() {
                 REGISTER TEAM
               </button>
               <a href="#events" className="border-2 border-on-surface text-on-surface px-8 py-4 font-headline-lg-mobile text-headline-lg-mobile hover:bg-surface-container-high transition-colors inline-block text-center">
-                  VIEW EVENTS
-                </a>
+                VIEW EVENTS
+              </a>
             </div>
           </div>
           <div className="md:col-span-6 h-full relative flex items-center justify-center">
