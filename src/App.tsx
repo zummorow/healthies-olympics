@@ -15,6 +15,7 @@ import menembakIcon from './assets/icons/menembak.svg';
 import pesIcon from './assets/icons/pes.svg';
 import mlIcon from './assets/icons/ml.svg';
 import juaraIcon from './assets/icons/juara.svg';
+import masterchefIcon from './assets/icons/masterchef.svg';
 
 const sportsCategories = [
   { name: 'Tenis Meja', icon: tenisMejaIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
@@ -30,6 +31,7 @@ const sportsCategories = [
   { name: 'PES Cup', icon: pesIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
   { name: 'Mobile Legend', icon: mlIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
   { name: 'Sang Juara Season II', icon: juaraIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
+  { name: 'Masterchef', icon: masterchefIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
 ];
 
 function App() {
