@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './index.css';
+import EventPage from './EventPage';
 import logo from './assets/logo.png';
 import tenisMejaIcon from './assets/icons/tenis-meja.svg';
 import badmintonIcon from './assets/icons/badminton.svg';
@@ -18,24 +19,27 @@ import juaraIcon from './assets/icons/juara.svg';
 import masterchefIcon from './assets/icons/masterchef.svg';
 
 const sportsCategories = [
-  { name: 'Tenis Meja', icon: tenisMejaIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Badminton', icon: badmintonIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'Padel', icon: padelIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Tennis', icon: tennisIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'Futsal', icon: futsalIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Basket 3 on 3', icon: basketIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'Relay Running', icon: lariIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Art Performance', icon: artIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'Bootcamprox', icon: bootcampIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Menembak', icon: menembakIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'PES Cup', icon: pesIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Mobile Legend', icon: mlIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
-  { name: 'Sang Juara Season II', icon: juaraIcon, color: 'border-primary-fixed', text: 'text-primary-fixed', bg: 'bg-primary-fixed' },
-  { name: 'Masterchef', icon: masterchefIcon, color: 'border-tertiary-fixed-dim', text: 'text-tertiary-fixed-dim', bg: 'bg-tertiary-fixed-dim' },
+  { name: 'Tenis Meja',        slug: 'tenis-meja',        discipline: '01', icon: tenisMejaIcon,  color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Pertandingan tenis meja antar unit utama Kemenkes.' },
+  { name: 'Badminton',         slug: 'badminton',          discipline: '02', icon: badmintonIcon,  color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Turnamen bulu tangkis beregu dan perorangan.' },
+  { name: 'Padel',             slug: 'padel',              discipline: '03', icon: padelIcon,      color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Olahraga padel yang menggabungkan elemen tenis dan squash.' },
+  { name: 'Tennis',            slug: 'tennis',             discipline: '04', icon: tennisIcon,     color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Pertandingan tenis lapangan antar pegawai.' },
+  { name: 'Futsal',            slug: 'futsal',             discipline: '05', icon: futsalIcon,     color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Turnamen futsal 5v5 antar unit kerja Kemenkes.' },
+  { name: 'Mendadak Basket',   slug: 'mendadak-basket',    discipline: '06', icon: basketIcon,     color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Kompetisi basket cepat antar divisi Kemenkes.' },
+  { name: 'Relay Running',     slug: 'relay-running',      discipline: '07', icon: lariIcon,       color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Lari estafet 4×100M antar unit utama Kemenkes.' },
+  { name: 'Art Performance',   slug: 'art-performance',    discipline: '08', icon: artIcon,        color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Pertunjukan seni budaya antar unit kerja.' },
+  { name: 'Bootcamprox',       slug: 'bootcamprox',        discipline: '09', icon: bootcampIcon,   color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Bootcamp kebugaran dan fisik intensif.' },
+  { name: 'Menembak',          slug: 'menembak',           discipline: '10', icon: menembakIcon,   color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Lomba menembak presisi antar pegawai Kemenkes.' },
+  { name: 'PES Cup',           slug: 'pes-cup',            discipline: '11', icon: pesIcon,        color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Turnamen e-sports PES antar unit utama.' },
+  { name: 'Mobile Legend',     slug: 'mobile-legend',      discipline: '12', icon: mlIcon,         color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Turnamen Mobile Legends Bang Bang antar unit.' },
+  { name: 'Sang Juara Season II', slug: 'sang-juara',      discipline: '13', icon: juaraIcon,      color: 'border-primary-fixed',       text: 'text-primary-fixed',       bg: 'bg-primary-fixed',       description: 'Kompetisi multi-event para juara dari setiap cabang.' },
+  { name: 'Masterchef',        slug: 'masterchef',         discipline: '14', icon: masterchefIcon, color: 'border-tertiary-fixed-dim',  text: 'text-tertiary-fixed-dim',  bg: 'bg-tertiary-fixed-dim',  description: 'Lomba memasak kreatif antar unit kerja Kemenkes.' },
 ];
+
+type SelectedEvent = { slug: string; discipline: string; name: string; description: string } | null;
 
 function App() {
   const [activeSection, setActiveSection] = useState<string>('hero');
+  const [selectedEvent, setSelectedEvent] = useState<SelectedEvent>(null);
   useEffect(() => {
     const elements = document.querySelectorAll('.hard-shadow') as NodeListOf<HTMLElement>;
     const handleMouseDown = (e: Event) => {
@@ -85,6 +89,35 @@ function App() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Show event detail page when an event is selected
+  if (selectedEvent) {
+    return (
+      <div className="text-on-surface">
+        {/* TopNavBar Shell */}
+        <nav className="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed font-label-caps text-label-caps w-full top-0 sticky border-b-2 border-on-surface dark:border-outline-variant z-50 flex justify-between items-center px-margin-desktop py-4">
+          <div className="flex items-center gap-4">
+            <img alt="Healthies Olympics Logo" className="h-12 w-auto object-contain" src={logo} />
+          </div>
+          <div className="hidden md:flex gap-8 items-center">
+            <button onClick={() => setSelectedEvent(null)} className="text-on-surface-variant hover:text-primary transition-colors duration-200">Home</button>
+            <button onClick={() => setSelectedEvent(null)} className="text-on-surface-variant hover:text-primary transition-colors duration-200">Events</button>
+          </div>
+          <button className="md:hidden material-symbols-outlined text-primary">menu</button>
+        </nav>
+        <AnimatePresence mode="wait">
+          <EventPage
+            key={selectedEvent.slug}
+            slug={selectedEvent.slug}
+            disciplineNumber={selectedEvent.discipline}
+            eventTitle={selectedEvent.name}
+            eventDescription={selectedEvent.description}
+            onBack={() => setSelectedEvent(null)}
+          />
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   return (
     <div className="text-on-surface">
@@ -202,7 +235,9 @@ function App() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                key={index} className={`group relative overflow-hidden border-l-2 ${category.color} pl-8`}>
+                key={index}
+                className={`group relative overflow-hidden border-l-2 ${category.color} pl-8 cursor-pointer`}
+                onClick={() => setSelectedEvent({ slug: category.slug, discipline: category.discipline, name: category.name, description: category.description })}>
                 <div className={`absolute -left-2 top-0 bottom-0 w-1 ${category.bg} group-hover:w-2 transition-all`}></div>
                 <img src={category.icon} alt={category.name} className="w-12 h-12 mb-6 filter invert brightness-0 opacity-80" />
                 <h3 className="font-headline-lg text-headline-lg-mobile mb-4">{category.name}</h3>
