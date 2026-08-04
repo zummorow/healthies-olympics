@@ -97,7 +97,6 @@ function App() {
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'hero' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#hero">Home</a>
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'events' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#events">Events</a>
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'schedule' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#schedule">Schedule</a>
-          <button className="bg-primary text-on-primary px-6 py-2 cta-clip font-bold active:translate-x-1 active:translate-y-1 transition-transform">Register</button>
         </div>
         <button className="md:hidden material-symbols-outlined text-primary">menu</button>
       </nav>
@@ -121,10 +120,7 @@ function App() {
               Festival Olahraga dan Kesehatan Pegawai Kementerian Kesehatan Republik Indonesia
             </p>
             <div className="flex flex-wrap gap-stack-md">
-              <button className="bg-primary text-on-primary px-10 py-4 cta-clip font-headline-lg-mobile text-headline-lg-mobile hard-shadow hover-shift transition-all" style={{ transform: "translate(0px, 0px)", boxShadow: "rgb(22, 29, 28) 4px 4px 0px 0px" }}>
-                REGISTER TEAM
-              </button>
-              <a href="#events" className="border-2 border-on-surface text-on-surface px-8 py-4 font-headline-lg-mobile text-headline-lg-mobile hover:bg-surface-container-high transition-colors inline-block text-center">
+              <a href="#events" className="bg-primary text-on-primary px-10 py-4 cta-clip font-headline-lg-mobile text-headline-lg-mobile hard-shadow hover-shift transition-all" style={{ transform: "translate(0px, 0px)", boxShadow: "rgb(22, 29, 28) 4px 4px 0px 0px" }}>
                 VIEW EVENTS
               </a>
             </div>
