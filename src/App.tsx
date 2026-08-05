@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './index.css';
 import EventPage from './EventPage';
+import MedalTable from './components/MedalTable';
 import logo from './assets/logo.png';
 import tenisMejaIcon from './assets/icons/tenis-meja.svg';
 import badmintonIcon from './assets/icons/badminton.svg';
@@ -70,7 +71,7 @@ function App() {
 
   // Update active navigation based on scroll position
   useEffect(() => {
-    const sections = ['hero', 'events', 'schedule'];
+    const sections = ['hero', 'medal-table', 'events', 'schedule'];
     const handleScroll = () => {
       let current = sections[0];
       for (const id of sections) {
@@ -217,6 +218,9 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Medal Table */}
+      <MedalTable />
 
       {/* Sports Categories: High Contrast Cards */}
       <section id="events" className="py-24 bg-on-background text-surface">
