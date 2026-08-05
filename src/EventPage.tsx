@@ -1,265 +1,43 @@
 import { motion } from 'framer-motion';
+import type { TeamSlot, BracketRound, BracketMatch, EventData } from './events/types';
+import { buildDefaultEventData } from './events/types';
 
-// ============================================================
-// DATA — mudah diupdate untuk setiap event/olahraga
-// ============================================================
+// ── Import data per event ────────────────────────────────────
+import tenisMeja from './events/tenis-meja';
+import badminton from './events/badminton';
+import padel from './events/padel';
+import tennis from './events/tennis';
+import futsal from './events/futsal';
+import mendadakBasket from './events/mendadak-basket';
+import relayRunning from './events/relay-running';
+import artPerformance from './events/art-performance';
+import bootcamprox from './events/bootcamprox';
+import menembak from './events/menembak';
+import pesCup from './events/pes-cup';
+import mobileLegend from './events/mobile-legend';
+import sangJuara from './events/sang-juara';
+import masterchef from './events/masterchef';
 
-export type TeamSlot = {
-  name: string;       // Nama tim
-  score?: string;     // Skor / waktu (opsional)
-  isWinner?: boolean; // Apakah ini pemenang matchup?
-};
-
-export type BracketMatch = {
-  team1: TeamSlot;
-  team2: TeamSlot;
-};
-
-export type BracketRound = {
-  label: string;  // "QF1", "QF2", "SF1", dll.
-  match: BracketMatch;
-};
-
-export type EventData = {
-  discipline: string;        // Nomor disiplin "06"
-  title: string;             // Nama event besar
-  description: string;       // Deskripsi singkat
-  rulesUrl?: string;         // Link download aturan
-  bracketTitle: string;      // "8-TEAM CORPORATE RELAY"
-  leftBracket: BracketRound[];   // Sisi kiri bracket (QF1, QF2)
-  rightBracket: BracketRound[];  // Sisi kanan bracket (QF3, QF4)
-  sf1: BracketMatch;         // Semifinal 1
-  sf2: BracketMatch;         // Semifinal 2
-  final: BracketMatch;       // Final
-  thirdPlace: BracketMatch;  // Perebutan juara 3
-  infoImage?: string;        // URL gambar pada section info
-  infoTitle: string;
-  infoText: string;
-  infoPoints: string[];      // Bullet poin format / aturan
-};
-
-// ── DAFTAR EVENT — tambah / edit di sini ────────────────────
+// ── Registry: slug → EventData ───────────────────────────────
 export const eventsData: Record<string, EventData> = {
-  'mendadak-basket': {
-    discipline: '06',
-    title: 'MENDADAK BASKET',
-    description:
-      'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
-    rulesUrl: '#',
-    bracketTitle: '8-TEAM CORPORATE RELAY',
-    leftBracket: [
-      {
-        label: 'QF1',
-        match: {
-          team1: { name: 'Tim 1', score: undefined },
-          team2: { name: 'Tim 2', score: undefined },
-        },
-      },
-      {
-        label: 'QF2',
-        match: {
-          team1: { name: 'Tim 3', score: undefined },
-          team2: { name: 'Tim 4', score: undefined },
-        },
-      },
-    ],
-    rightBracket: [
-      {
-        label: 'QF3',
-        match: {
-          team1: { name: 'Tim 5', score: undefined },
-          team2: { name: 'Tim 6', score: undefined },
-        },
-      },
-      {
-        label: 'QF4',
-        match: {
-          team1: { name: 'Tim 7', score: undefined },
-          team2: { name: 'Tim 8', score: undefined },
-        },
-      },
-    ],
-    sf1: {
-      team1: { name: 'Tech Sprinters', isWinner: true },
-      team2: { name: 'Winner QF2' },
-    },
-    sf2: {
-      team1: { name: 'Winner QF3' },
-      team2: { name: 'Winner QF4' },
-    },
-    final: {
-      team1: { name: 'Winner SF1' },
-      team2: { name: 'Winner SF2' },
-    },
-    thirdPlace: {
-      team1: { name: 'Loser SF1' },
-      team2: { name: 'Loser SF2' },
-    },
-    infoImage:
-      'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80',
-    infoTitle: 'MENDADAK BASKET',
-    infoText:
-      'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
-    infoPoints: ['Format 3 on 3 Male', 'Shooting Competion'],
-  },
-
-  'relay-running': {
-    discipline: '07',
-    title: 'RELAY RUNNING',
-    description:
-      'Kompetisi lari estafet antar unit kerja yang menguji kecepatan, stamina, dan kerja sama tim dalam satu lintasan.',
-    rulesUrl: '#',
-    bracketTitle: '8-TEAM RELAY SPRINT',
-    leftBracket: [
-      {
-        label: 'QF1',
-        match: {
-          team1: { name: 'Ditjen A', score: undefined },
-          team2: { name: 'Ditjen B', score: undefined },
-        },
-      },
-      {
-        label: 'QF2',
-        match: {
-          team1: { name: 'Ditjen C', score: undefined },
-          team2: { name: 'Ditjen D', score: undefined },
-        },
-      },
-    ],
-    rightBracket: [
-      {
-        label: 'QF3',
-        match: {
-          team1: { name: 'Badan A', score: undefined },
-          team2: { name: 'Badan B', score: undefined },
-        },
-      },
-      {
-        label: 'QF4',
-        match: {
-          team1: { name: 'Sekretariat', score: undefined },
-          team2: { name: 'Inspektorat', score: undefined },
-        },
-      },
-    ],
-    sf1: {
-      team1: { name: 'Winner QF1' },
-      team2: { name: 'Winner QF2' },
-    },
-    sf2: {
-      team1: { name: 'Winner QF3' },
-      team2: { name: 'Winner QF4' },
-    },
-    final: {
-      team1: { name: 'Winner SF1' },
-      team2: { name: 'Winner SF2' },
-    },
-    thirdPlace: {
-      team1: { name: 'Loser SF1' },
-      team2: { name: 'Loser SF2' },
-    },
-    infoImage:
-      'https://images.unsplash.com/photo-1594882645126-14020914d58d?w=800&q=80',
-    infoTitle: 'RELAY RUNNING',
-    infoText:
-      'Estafet membutuhkan sinkronisasi sempurna antara pelari. Latihan transisi dan strategi urutan adalah kunci kemenangan.',
-    infoPoints: ['Format 4×100M', 'Mixed Gender', 'Chip Timing'],
-  },
-
-  'futsal': {
-    discipline: '05',
-    title: 'FUTSAL',
-    description:
-      'Turnamen futsal 5v5 antar unit utama Kemenkes. Uji taktik, kecepatan, dan kekompakan di atas lapangan indoor.',
-    rulesUrl: '#',
-    bracketTitle: '8-TEAM FUTSAL CUP',
-    leftBracket: [
-      {
-        label: 'QF1',
-        match: {
-          team1: { name: 'Unit A', score: undefined },
-          team2: { name: 'Unit B', score: undefined },
-        },
-      },
-      {
-        label: 'QF2',
-        match: {
-          team1: { name: 'Unit C', score: undefined },
-          team2: { name: 'Unit D', score: undefined },
-        },
-      },
-    ],
-    rightBracket: [
-      {
-        label: 'QF3',
-        match: {
-          team1: { name: 'Unit E', score: undefined },
-          team2: { name: 'Unit F', score: undefined },
-        },
-      },
-      {
-        label: 'QF4',
-        match: {
-          team1: { name: 'Unit G', score: undefined },
-          team2: { name: 'Unit H', score: undefined },
-        },
-      },
-    ],
-    sf1: {
-      team1: { name: 'Winner QF1' },
-      team2: { name: 'Winner QF2' },
-    },
-    sf2: {
-      team1: { name: 'Winner QF3' },
-      team2: { name: 'Winner QF4' },
-    },
-    final: {
-      team1: { name: 'Winner SF1' },
-      team2: { name: 'Winner SF2' },
-    },
-    thirdPlace: {
-      team1: { name: 'Loser SF1' },
-      team2: { name: 'Loser SF2' },
-    },
-    infoImage:
-      'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800&q=80',
-    infoTitle: 'FUTSAL',
-    infoText:
-      'Futsal adalah permainan cepat yang menuntut visi, teknik, dan komunikasi tim yang erat. Setiap gol hasil kerja keras bersama.',
-    infoPoints: ['5 vs 5 Players', 'Indoor Court', 'FIFA Rules'],
-  },
+  'tenis-meja':      tenisMeja,
+  'badminton':       badminton,
+  'padel':           padel,
+  'tennis':          tennis,
+  'futsal':          futsal,
+  'mendadak-basket': mendadakBasket,
+  'relay-running':   relayRunning,
+  'art-performance': artPerformance,
+  'bootcamprox':     bootcamprox,
+  'menembak':        menembak,
+  'pes-cup':         pesCup,
+  'mobile-legend':   mobileLegend,
+  'sang-juara':      sangJuara,
+  'masterchef':      masterchef,
 };
 
-// ── Helper default untuk event yang belum punya data ─────────
-function buildDefaultEventData(
-  slug: string,
-  discipline: string,
-  title: string,
-  description: string,
-): EventData {
-  const placeholder = (label: string) => ({
-    label,
-    match: {
-      team1: { name: 'TBA', score: undefined },
-      team2: { name: 'TBA', score: undefined },
-    },
-  });
-  return {
-    discipline,
-    title: title.toUpperCase(),
-    description,
-    bracketTitle: `8-TEAM ${title.toUpperCase()}`,
-    leftBracket: [placeholder('QF1'), placeholder('QF2')],
-    rightBracket: [placeholder('QF3'), placeholder('QF4')],
-    sf1: { team1: { name: 'Winner QF1' }, team2: { name: 'Winner QF2' } },
-    sf2: { team1: { name: 'Winner QF3' }, team2: { name: 'Winner QF4' } },
-    final: { team1: { name: 'Winner SF1' }, team2: { name: 'Winner SF2' } },
-    thirdPlace: { team1: { name: 'Loser SF1' }, team2: { name: 'Loser SF2' } },
-    infoTitle: title.toUpperCase(),
-    infoText: description,
-    infoPoints: ['Info Coming Soon'],
-  };
-}
+// Re-export types for consumers
+export type { TeamSlot, BracketRound, BracketMatch, EventData };
 
 // ── Sub-komponen: satu baris matchup ────────────────────────
 function TeamRow({ team, showScore }: { team: TeamSlot; showScore?: boolean }) {
