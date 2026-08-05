@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import type { TeamSlot, BracketRound, BracketMatch, EventData } from './events/types';
 import { buildDefaultEventData } from './events/types';
+import MendadakBasketBracket from './components/MendadakBasketBracket';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -148,7 +149,7 @@ export default function EventPage({
   // Cari data event. Jika belum ada, buat default.
   const data: EventData =
     eventsData[slug] ??
-    buildDefaultEventData(slug, disciplineNumber, eventTitle, eventDescription);
+    buildDefaultEventData(disciplineNumber, eventTitle, eventDescription);
 
   return (
     <motion.div
@@ -199,58 +200,74 @@ export default function EventPage({
 
       {/* ── Tournament Bracket ────────────────────────── */}
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
-            {data.bracketTitle}
-          </h2>
-          <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
-            LIVE BRACKET
-          </span>
-        </div>
-
-        {/* Bracket layout — scroll horizontal on mobile */}
-        <div className="overflow-x-auto pb-4">
-          <div className="min-w-[780px] grid grid-cols-[1fr_1fr_1fr_1fr_1fr] gap-x-4 items-center">
-
-            {/* Col 1 – Left QFs */}
-            <div className="flex flex-col gap-8 justify-around">
-              {data.leftBracket.map((round) => (
-                <BracketBox key={round.label} round={round} />
-              ))}
+        {data.bracketType === 'group-16' && data.groupBracket ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE BRACKET
+              </span>
+            </div>
+            <MendadakBasketBracket data={data.groupBracket} />
+          </>
+        ) : (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE BRACKET
+              </span>
             </div>
 
-            {/* Col 2 – SF1 */}
-            <div className="flex items-center justify-center">
-              <MatchBox label="SF1" match={data.sf1} />
-            </div>
+            {/* Bracket layout — scroll horizontal on mobile */}
+            <div className="overflow-x-auto pb-4">
+              <div className="min-w-[780px] grid grid-cols-[1fr_1fr_1fr_1fr_1fr] gap-x-4 items-center">
 
-            {/* Col 3 – Championship + 3rd Place */}
-            <div className="flex flex-col gap-8 items-center">
-              <MatchBox
-                label="CHAMPIONSHIP"
-                match={data.final}
-                isChampionship
-              />
-              <MatchBox
-                label="3RD PLACE"
-                match={data.thirdPlace}
-                isThirdPlace
-              />
-            </div>
+                {/* Col 1 – Left QFs */}
+                <div className="flex flex-col gap-8 justify-around">
+                  {data.leftBracket.map((round) => (
+                    <BracketBox key={round.label} round={round} />
+                  ))}
+                </div>
 
-            {/* Col 4 – SF2 */}
-            <div className="flex items-center justify-center">
-              <MatchBox label="SF2" match={data.sf2} />
-            </div>
+                {/* Col 2 – SF1 */}
+                <div className="flex items-center justify-center">
+                  <MatchBox label="SF1" match={data.sf1} />
+                </div>
 
-            {/* Col 5 – Right QFs */}
-            <div className="flex flex-col gap-8 justify-around">
-              {data.rightBracket.map((round) => (
-                <BracketBox key={round.label} round={round} />
-              ))}
+                {/* Col 3 – Championship + 3rd Place */}
+                <div className="flex flex-col gap-8 items-center">
+                  <MatchBox
+                    label="CHAMPIONSHIP"
+                    match={data.final}
+                    isChampionship
+                  />
+                  <MatchBox
+                    label="3RD PLACE"
+                    match={data.thirdPlace}
+                    isThirdPlace
+                  />
+                </div>
+
+                {/* Col 4 – SF2 */}
+                <div className="flex items-center justify-center">
+                  <MatchBox label="SF2" match={data.sf2} />
+                </div>
+
+                {/* Col 5 – Right QFs */}
+                <div className="flex flex-col gap-8 justify-around">
+                  {data.rightBracket.map((round) => (
+                    <BracketBox key={round.label} round={round} />
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </section>
 
       {/* ── Info / Description Section ────────────────── */}

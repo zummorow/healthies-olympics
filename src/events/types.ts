@@ -18,12 +18,29 @@ export type BracketRound = {
   match: BracketMatch;
 };
 
+export type GroupBracketSection = {
+  label: string;
+  teams: TeamSlot[]; // 4 tim per grup
+  winner?: TeamSlot;
+};
+
+export type GroupBracketData = {
+  title: string;
+  subtitle: string;
+  leftTop: GroupBracketSection;
+  leftBottom: GroupBracketSection;
+  rightTop: GroupBracketSection;
+  rightBottom: GroupBracketSection;
+};
+
 export type EventData = {
   discipline: string;        // Nomor disiplin "06"
   title: string;             // Nama event besar
   description: string;       // Deskripsi singkat
   rulesUrl?: string;         // Link download aturan
+  bracketType?: 'standard' | 'group-16';
   bracketTitle: string;      // "8-TEAM CORPORATE RELAY"
+  groupBracket?: GroupBracketData;
   leftBracket: BracketRound[];   // Sisi kiri bracket (QF1, QF2)
   rightBracket: BracketRound[];  // Sisi kanan bracket (QF3, QF4)
   sf1: BracketMatch;         // Semifinal 1
@@ -38,7 +55,6 @@ export type EventData = {
 
 // ── Helper: buat placeholder bracket standar 8-tim ─────────
 export function buildDefaultEventData(
-  slug: string,
   discipline: string,
   title: string,
   description: string,

@@ -5,64 +5,49 @@ import type { EventData } from './types';
 // Edit bagian ini untuk update bracket dan info event.
 // ============================================================
 
+const team = (name: string) => ({ name });
+
 const mendadakBasket: EventData = {
   discipline: '06',
   title: 'MENDADAK BASKET',
   description:
     'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
   rulesUrl: '#',
-  bracketTitle: '8-TEAM CORPORATE RELAY',
+  bracketType: 'group-16',
+  bracketTitle: 'TOURNAMENT',
 
-  leftBracket: [
-    {
-      label: 'QF1',
-      match: {
-        team1: { name: 'Tim 1', score: undefined },
-        team2: { name: 'Tim 2', score: undefined },
-      },
+  groupBracket: {
+    title: 'TOURNAMENT',
+    subtitle: '16 TEAMS',
+    leftTop: {
+      label: 'GROUP A',
+      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
+      winner: team('Winner'),
     },
-    {
-      label: 'QF2',
-      match: {
-        team1: { name: 'Tim 3', score: undefined },
-        team2: { name: 'Tim 4', score: undefined },
-      },
+    leftBottom: {
+      label: 'GROUP C',
+      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
+      winner: team('Winner'),
     },
-  ],
+    rightTop: {
+      label: 'GROUP B',
+      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
+      winner: team('Winner'),
+    },
+    rightBottom: {
+      label: 'GROUP D',
+      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
+      winner: team('Winner'),
+    },
+  },
 
-  rightBracket: [
-    {
-      label: 'QF3',
-      match: {
-        team1: { name: 'Tim 5', score: undefined },
-        team2: { name: 'Tim 6', score: undefined },
-      },
-    },
-    {
-      label: 'QF4',
-      match: {
-        team1: { name: 'Tim 7', score: undefined },
-        team2: { name: 'Tim 8', score: undefined },
-      },
-    },
-  ],
-
-  sf1: {
-    team1: { name: 'Tech Sprinters', isWinner: true },
-    team2: { name: 'Winner QF2' },
-  },
-  sf2: {
-    team1: { name: 'Winner QF3' },
-    team2: { name: 'Winner QF4' },
-  },
-  final: {
-    team1: { name: 'Winner SF1' },
-    team2: { name: 'Winner SF2' },
-  },
-  thirdPlace: {
-    team1: { name: 'Loser SF1' },
-    team2: { name: 'Loser SF2' },
-  },
+  // Placeholder — tidak ditampilkan saat bracketType = group-16
+  leftBracket: [],
+  rightBracket: [],
+  sf1: { team1: { name: '—' }, team2: { name: '—' } },
+  sf2: { team1: { name: '—' }, team2: { name: '—' } },
+  final: { team1: { name: '—' }, team2: { name: '—' } },
+  thirdPlace: { team1: { name: '—' }, team2: { name: '—' } },
 
   infoImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80',
   infoTitle: 'MENDADAK BASKET',
