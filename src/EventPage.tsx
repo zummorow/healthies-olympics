@@ -246,7 +246,7 @@ export default function EventPage({
                 LIVE BRACKET
               </span>
             </div>
-            {slug === 'mobile-legend' || slug === 'padel' ? (
+            {slug === 'mobile-legend' || slug === 'padel' || slug === 'tenis-meja' ? (
               <MobileLegendBracket data={data.groupBracket} />
             ) : (
               <MendadakBasketBracket data={data.groupBracket} />
