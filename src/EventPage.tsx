@@ -192,6 +192,8 @@ export default function EventPage({
           {data.rulesUrl && (
             <a
               href={data.rulesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-primary text-on-primary font-label-caps text-label-caps px-5 py-3 hard-shadow hover-shift transition-all"
             >
               <span className="material-symbols-outlined text-base">

@@ -12,7 +12,7 @@ const mendadakBasket: EventData = {
   title: 'MENDADAK BASKET',
   description:
     'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
-  rulesUrl: '#',
+  rulesUrl: 'https://docs.google.com/presentation/d/1sI8zh1lr8KacyMcOs3DK3BgtxpKIcVi3hDnIzF5Q53g/edit?usp=sharing',
   bracketType: 'group-16',
   bracketTitle: 'TOURNAMENT 3 ON 3 MALE',
 
