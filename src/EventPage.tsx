@@ -5,6 +5,7 @@ import { buildDefaultEventData } from './events/types';
 import MendadakBasketBracket from './components/MendadakBasketBracket';
 import MobileLegendBracket from './components/MobileLegendBracket';
 import ShootingCompetition from './components/ShootingCompetition';
+import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -33,6 +34,7 @@ export const eventsData: Record<string, EventData> = {
   'relay-running': relayRunning,
   'art-performance': artPerformance,
   'bootcamprox': bootcamprox,
+  'fitrox': bootcamprox,
   'menembak': menembak,
   'playstation': pesCup,
   'mobile-legend': mobileLegend,
@@ -207,7 +209,9 @@ export default function EventPage({
 
       {/* ── Tournament Bracket ────────────────────────── */}
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
-        {data.categories && data.categories.length > 0 ? (
+        {data.bracketType === 'leaderboard' || data.bootcamproxTeams ? (
+          <BootcamproxLeaderboard teams={data.bootcamproxTeams} />
+        ) : data.categories && data.categories.length > 0 ? (
           <>
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <div>

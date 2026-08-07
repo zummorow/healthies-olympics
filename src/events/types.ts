@@ -36,13 +36,20 @@ export type GroupBracketData = {
   rightWinner?: TeamSlot;
 };
 
+export type BootcamproxTeam = {
+  teamName: string;   // Nama Tim
+  unit: string;       // Unit Utama
+  time: string;       // Perolehan Waktu (format MM:SS atau MM:SS.ms, contoh "12:34.50")
+};
+
 export type EventData = {
   discipline: string;        // Nomor disiplin "06"
   title: string;             // Nama event besar
   description: string;       // Deskripsi singkat
   rulesUrl?: string;         // Link download aturan
-  bracketType?: 'standard' | 'group-16';
+  bracketType?: 'standard' | 'group-16' | 'leaderboard';
   bracketTitle: string;      // "8-TEAM CORPORATE RELAY"
+  bootcamproxTeams?: BootcamproxTeam[]; // Data 16 tim untuk leaderboard Bootcamprox
   groupBracket?: GroupBracketData;
   categories?: {
     name: string;
