@@ -8,7 +8,7 @@ const LINE = '#4a4d4f';
 const SLOT_CLIP_L = 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)';
 const SLOT_CLIP_R = 'polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%)';
 
-const SLOT_H = 44;
+const SLOT_H = 56; // Dinaikkan dari 44 → 56 untuk menampung nama + skor
 const SLOT_GAP = 12;
 const D = SLOT_H + SLOT_GAP;
 const CONNECTOR_W = 36;
@@ -20,22 +20,39 @@ const Y2 = Array.from({ length: 2 }, (_, i) => (Y1[i * 2] + Y1[i * 2 + 1]) / 2);
 const Y3 = (Y2[0] + Y2[1]) / 2;
 
 // ── Team slot box ─────────────────────────────────────────────
+// Menampilkan nama tim (dan skor opsional di bawahnya jika team.score diisi)
 function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'right'; y: number }) {
   const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
+  const isRight = align === 'right';
   return (
     <div
       className="absolute flex items-center"
-      style={{ clipPath: clip, width: 180, height: SLOT_H, top: y - SLOT_H / 2, ...(align === 'left' ? { left: 0 } : { right: 0 }) }}
+      style={{ clipPath: clip, width: 180, height: SLOT_H, top: y - SLOT_H / 2, ...(isRight ? { right: 0 } : { left: 0 }) }}
     >
       <div className="absolute inset-0" style={{ background: '#2a2d2f', borderTop: `1px solid ${GOLD}30`, borderBottom: `1px solid ${GOLD}30` }} />
-      {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
-      {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
-      <span
-        className={`relative z-10 px-5 text-[10px] uppercase tracking-widest font-semibold truncate w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${align === 'right' ? 'text-right' : ''}`}
-        style={{ fontFamily: 'inherit', letterSpacing: '0.12em' }}
-      >
-        {team.name}
-      </span>
+      {!isRight && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
+      {isRight && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
+
+      {/* Konten: nama tim + skor (jika ada) */}
+      <div className={`relative z-10 px-5 w-full flex flex-col gap-[2px] ${isRight ? 'items-end' : 'items-start'}`}>
+        {/* Nama tim */}
+        <span
+          className={`text-[10px] uppercase tracking-widest font-semibold truncate w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${isRight ? 'text-right' : ''}`}
+          style={{ fontFamily: 'inherit', letterSpacing: '0.12em' }}
+        >
+          {team.name}
+        </span>
+
+        {/* Skor perolehan poin — hanya tampil jika field score diisi */}
+        {team.score !== undefined && (
+          <span
+            className={`text-[9px] font-mono tracking-widest ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'} ${isRight ? 'text-right' : ''}`}
+            style={{ letterSpacing: '0.1em' }}
+          >
+            {team.score}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

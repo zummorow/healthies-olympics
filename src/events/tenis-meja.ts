@@ -21,12 +21,14 @@ const tenisMeja: EventData = {
   //
   // ── LEVEL 0 — Nama Tim (isi di awal turnamen) ────────────────────────────
   //   Ganti 'Team X' dengan nama tim / unit yang sebenarnya.
-  //   Contoh: { name: 'Setjen' }
+  //   Isi juga field score untuk menampilkan perolehan poin di bawah nama.
+  //   Contoh: { name: 'Setjen', score: '3 poin' }
+  //   Jika belum ada skor, biarkan score: '-' sebagai placeholder.
   //
   // ── LEVEL 1 — Pemenang Q1 (hasil babak awal, 2 vs 2) ────────────────────
   //   Tandai tim yang menang di babak awal dengan isWinner: true.
   //   Sistem akan otomatis menampilkannya di slot "Winner" level berikutnya.
-  //   Contoh: { name: 'Setjen', isWinner: true }
+  //   Contoh: { name: 'Setjen', score: '3 poin', isWinner: true }
   //
   // ── LEVEL 2 — Pemenang Grup / Q2 (winner naik ke semifinal) ─────────────
   //   Isi field `winner` pada setiap grup (leftTop / leftBottom / dst).
@@ -51,10 +53,10 @@ const tenisMeja: EventData = {
     leftTop: {
       label: 'GROUP A',
       teams: [
-        { name: 'Team 1' },  // ← Ganti dengan nama peserta
-        { name: 'Team 2' },  // ← Ganti dengan nama peserta
-        { name: 'Team 3' },  // ← Ganti dengan nama peserta
-        { name: 'Team 4' },  // ← Ganti dengan nama peserta
+        { name: 'Team 1', score: '-' },  // ← Ganti nama & isi skor (contoh: '3 poin')
+        { name: 'Team 2', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 3', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 4', score: '-' },  // ← Ganti nama & isi skor
       ],
       // Setelah Group A selesai, uncomment baris ini dan isi nama pemenang:
       // winner: { name: 'Team 1', isWinner: true },
@@ -65,10 +67,10 @@ const tenisMeja: EventData = {
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        { name: 'Team 5' },  // ← Ganti dengan nama peserta
-        { name: 'Team 6' },  // ← Ganti dengan nama peserta
-        { name: 'Team 7' },  // ← Ganti dengan nama peserta
-        { name: 'Team 8' },  // ← Ganti dengan nama peserta
+        { name: 'Team 5', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 6', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 7', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 8', score: '-' },  // ← Ganti nama & isi skor
       ],
       // Setelah Group C selesai, uncomment baris ini dan isi nama pemenang:
       // winner: { name: 'Team 5', isWinner: true },
@@ -81,10 +83,10 @@ const tenisMeja: EventData = {
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'Team 9' },   // ← Ganti dengan nama peserta
-        { name: 'Team 10' },  // ← Ganti dengan nama peserta
-        { name: 'Team 11' },  // ← Ganti dengan nama peserta
-        { name: 'Team 12' },  // ← Ganti dengan nama peserta
+        { name: 'Team 9',  score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 10', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 11', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 12', score: '-' },  // ← Ganti nama & isi skor
       ],
       // Setelah Group B selesai, uncomment baris ini dan isi nama pemenang:
       // winner: { name: 'Team 9', isWinner: true },
@@ -95,10 +97,10 @@ const tenisMeja: EventData = {
     rightBottom: {
       label: 'GROUP D',
       teams: [
-        { name: 'Team 13' },  // ← Ganti dengan nama peserta
-        { name: 'Team 14' },  // ← Ganti dengan nama peserta
-        { name: 'Team 15' },  // ← Ganti dengan nama peserta
-        { name: 'Team 16' },  // ← Ganti dengan nama peserta
+        { name: 'Team 13', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 14', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 15', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 16', score: '-' },  // ← Ganti nama & isi skor
       ],
       // Setelah Group D selesai, uncomment baris ini dan isi nama pemenang:
       // winner: { name: 'Team 13', isWinner: true },
@@ -120,6 +122,7 @@ const tenisMeja: EventData = {
   final: { team1: { name: 'Winner SF1' }, team2: { name: 'Winner SF2' } },
   thirdPlace: { team1: { name: 'Loser SF1' }, team2: { name: 'Loser SF2' } },
 
+  infoImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShs6mfVnEScyWXgDAnOOXRGRJbeG82WGLuCV13RxBE3A&s=10',
   infoTitle: 'TENIS MEJA',
   infoText: 'Pertandingan tenis meja antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul 3 set akan melaju ke babak berikutnya.',
   infoPoints: [
