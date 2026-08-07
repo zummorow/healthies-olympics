@@ -122,7 +122,7 @@ const pesCup: EventData = {
 
   infoImage: 'https://www.thementoringpartnership.com/wp-content/uploads/2023/11/image.jpg',
   infoTitle: 'PLAYSTATION',
-  infoText: 'urnamen e-sports PlayStation 5 kompetisi gim sepak bola EA SPORTS FC 26 antar Unit Utama.',
+  infoText: 'Turnamen e-sports PlayStation 5 kompetisi gim sepak bola EA SPORTS FC 26 antar Unit Utama.',
   infoPoints: [
     'Format 1 vs 1 (Knockout)',
   ],
