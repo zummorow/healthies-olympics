@@ -8,7 +8,7 @@ import type { EventData } from './types';
 const pesCup: EventData = {
   discipline: '11',
   title: 'PLAYSTATION',
-  description: 'Turnamen e-sports FIFA antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul skor akan melaju ke babak berikutnya.',
+  description: 'Turnamen e-sports EA SPORTS FC 26 antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul skor akan melaju ke babak berikutnya.',
   rulesUrl: '#',
   bracketType: 'group-16',
   bracketTitle: '16-TEAM PLAYSTATION CUP',
@@ -120,12 +120,11 @@ const pesCup: EventData = {
   final: { team1: { name: 'Winner SF1' }, team2: { name: 'Winner SF2' } },
   thirdPlace: { team1: { name: 'Loser SF1' }, team2: { name: 'Loser SF2' } },
 
+  infoImage: 'https://www.thementoringpartnership.com/wp-content/uploads/2023/11/image.jpg',
   infoTitle: 'PLAYSTATION',
-  infoText: 'Turnamen e-sports FIFA antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul skor akan melaju ke babak berikutnya.',
+  infoText: 'urnamen e-sports PlayStation 5 kompetisi gim sepak bola EA SPORTS FC 26 antar Unit Utama.',
   infoPoints: [
     'Format 1 vs 1 (Knockout)',
-    '16 tim dari unit utama Kemenkes',
-    'Tim dengan skor tertinggi lolos ke babak berikutnya',
   ],
 };
 
