@@ -1,4 +1,4 @@
-﻿// ShootingCompetition.tsx
+// ShootingCompetition.tsx
 // Kompetisi tembak — format: poin tertinggi = pemenang
 
 const GOLD = '#f3d898';
@@ -7,7 +7,7 @@ const DARKER = '#141516';
 
 interface Shooter {
   rank: number;
-  name: string;
+  name?: string;
   unit: string;
   round1: number;
   round2: number;
@@ -18,14 +18,15 @@ interface Shooter {
 
 // Placeholder data — ganti dengan data aktual peserta
 const shooters: Shooter[] = [
-  { rank: 1, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0, isWinner: true },
-  { rank: 2, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 3, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 4, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 5, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 6, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 7, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
-  { rank: 8, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0 },
+  //{ rank: 1, name: 'Nama Peserta', unit: 'Unit Kerja', round1: 0, round2: 0, round3: 0, total: 0, isWinner: true },
+  { rank: 1, unit: 'Sekretariat Jenderal', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 2, unit: 'Inspektorat Jenderal', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 3, unit: 'Direktorat Jenderal Jesehatan Primer Komunitas', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 4, unit: 'Direktorat Jenderal Kesehatan Lanjutan', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 5, unit: 'Direktorat Jenderal Penanggulangan Penyakit', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 6, unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 7, unit: 'Direktorat Jenderal Sumber Daya Manusia Kesehatan', round1: 0, round2: 0, round3: 0, total: 0 },
+  { rank: 8, unit: 'Badan Kebijakan Pembangunan Kesehatan', round1: 0, round2: 0, round3: 0, total: 0 },
 ];
 
 export default function ShootingCompetition() {
@@ -72,7 +73,7 @@ export default function ShootingCompetition() {
                 width: 36,
                 height: 36,
                 background: s.isWinner ? GOLD : '#2a2d2f',
-                color: s.isWinner ? DARKER : 'rgba(255,255,255,0.4)',
+                color: s.isWinner ? DARKER : 'white',
                 fontSize: 14,
                 clipPath: 'polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)',
               }}
@@ -84,25 +85,25 @@ export default function ShootingCompetition() {
             <div className="flex-1 min-w-0">
               <div
                 className="text-sm font-semibold uppercase tracking-wide truncate"
-                style={{ color: s.isWinner ? GOLD : 'rgba(255,255,255,0.9)' }}
+                style={{ color: s.isWinner ? GOLD : 'white' }}
               >
                 {s.name}
               </div>
-              <div className="text-xs uppercase truncate" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }}>
+              <div className="text-xs uppercase truncate" style={{ color: 'white', letterSpacing: '0.1em' }}>
                 {s.unit}
               </div>
             </div>
 
             {/* Round scores */}
             <div className="flex items-center gap-6 text-sm font-mono shrink-0">
-              <span style={{ color: 'rgba(255,255,255,0.55)', minWidth: 28, textAlign: 'center' }}>{s.round1}</span>
-              <span style={{ color: 'rgba(255,255,255,0.55)', minWidth: 28, textAlign: 'center' }}>{s.round2}</span>
-              <span style={{ color: 'rgba(255,255,255,0.55)', minWidth: 28, textAlign: 'center' }}>{s.round3}</span>
+              <span style={{ color: 'white', minWidth: 28, textAlign: 'center' }}>{s.round1}</span>
+              <span style={{ color: 'white', minWidth: 28, textAlign: 'center' }}>{s.round2}</span>
+              <span style={{ color: 'white', minWidth: 28, textAlign: 'center' }}>{s.round3}</span>
               {/* Total */}
               <span
                 className="font-black text-base"
                 style={{
-                  color: s.isWinner ? GOLD : 'rgba(255,255,255,0.85)',
+                  color: s.isWinner ? GOLD : 'white',
                   minWidth: 40,
                   textAlign: 'center',
                   background: s.isWinner ? 'rgba(243,216,152,0.12)' : 'rgba(255,255,255,0.06)',
@@ -120,7 +121,7 @@ export default function ShootingCompetition() {
       {/* Footer note */}
       <div
         className="px-6 py-4 flex items-center gap-3 text-xs uppercase tracking-widest"
-        style={{ background: '#161818', color: 'rgba(255,255,255,0.35)', borderTop: '1px solid #2e3133' }}
+        style={{ background: '#161818', color: 'white', borderTop: '1px solid #2e3133' }}
       >
         <div className="w-2 h-2 rounded-sm shrink-0" style={{ background: GOLD }} />
         Pemenang ditentukan dari akumulasi poin tertinggi dari semua round
