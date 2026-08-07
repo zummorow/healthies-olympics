@@ -102,6 +102,7 @@ function App() {
           </div>
           <div className="hidden md:flex gap-8 items-center">
             <button onClick={() => setSelectedEvent(null)} className="text-on-surface-variant hover:text-primary transition-colors duration-200">Home</button>
+            <button onClick={() => { setSelectedEvent(null); setTimeout(() => document.getElementById('medal-table')?.scrollIntoView(), 100); }} className="text-on-surface-variant hover:text-primary transition-colors duration-200">Medal Table</button>
             <button onClick={() => setSelectedEvent(null)} className="text-on-surface-variant hover:text-primary transition-colors duration-200">Events</button>
           </div>
           <button className="md:hidden material-symbols-outlined text-primary">menu</button>
@@ -129,6 +130,7 @@ function App() {
         </div>
         <div className="hidden md:flex gap-8 items-center">
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'hero' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#hero">Home</a>
+          <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'medal-table' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#medal-table">Medal Table</a>
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'events' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#events">Events</a>
           <a className={`text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 ${activeSection === 'schedule' ? 'text-primary font-bold border-b-2 border-primary' : ''}`} href="#schedule">Schedule</a>
         </div>
