@@ -34,7 +34,7 @@ export const eventsData: Record<string, EventData> = {
   'art-performance': artPerformance,
   'bootcamprox': bootcamprox,
   'menembak': menembak,
-  'pes-cup': pesCup,
+  'playstation': pesCup,
   'mobile-legend': mobileLegend,
   'sang-juara': sangJuara,
   'masterchef': masterchef,
@@ -246,7 +246,7 @@ export default function EventPage({
                 LIVE BRACKET
               </span>
             </div>
-            {slug === 'mobile-legend' || slug === 'padel' || slug === 'tenis-meja' ? (
+            {slug === 'mobile-legend' || slug === 'padel' || slug === 'tenis-meja' || slug === 'playstation' ? (
               <MobileLegendBracket data={data.groupBracket} />
             ) : (
               <MendadakBasketBracket data={data.groupBracket} />
