@@ -31,6 +31,9 @@ export type GroupBracketData = {
   leftBottom: GroupBracketSection;
   rightTop: GroupBracketSection;
   rightBottom: GroupBracketSection;
+  // Pemenang akhir tiap sisi — tampil di slot "Finalist" dekat lingkaran VS
+  leftWinner?: TeamSlot;
+  rightWinner?: TeamSlot;
 };
 
 export type EventData = {
@@ -41,6 +44,10 @@ export type EventData = {
   bracketType?: 'standard' | 'group-16';
   bracketTitle: string;      // "8-TEAM CORPORATE RELAY"
   groupBracket?: GroupBracketData;
+  categories?: {
+    name: string;
+    groupBracket: GroupBracketData;
+  }[];
   leftBracket: BracketRound[];   // Sisi kiri bracket (QF1, QF2)
   rightBracket: BracketRound[];  // Sisi kanan bracket (QF3, QF4)
   sf1: BracketMatch;         // Semifinal 1

@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { TeamSlot, BracketRound, BracketMatch, EventData } from './events/types';
 import { buildDefaultEventData } from './events/types';
 import MendadakBasketBracket from './components/MendadakBasketBracket';
+import MobileLegendBracket from './components/MobileLegendBracket';
+import ShootingCompetition from './components/ShootingCompetition';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -21,20 +24,20 @@ import masterchef from './events/masterchef';
 
 // ── Registry: slug → EventData ───────────────────────────────
 export const eventsData: Record<string, EventData> = {
-  'tenis-meja':      tenisMeja,
-  'badminton':       badminton,
-  'padel':           padel,
-  'tennis':          tennis,
-  'futsal':          futsal,
+  'tenis-meja': tenisMeja,
+  'badminton': badminton,
+  'padel': padel,
+  'tennis': tennis,
+  'futsal': futsal,
   'mendadak-basket': mendadakBasket,
-  'relay-running':   relayRunning,
+  'relay-running': relayRunning,
   'art-performance': artPerformance,
-  'bootcamprox':     bootcamprox,
-  'menembak':        menembak,
-  'pes-cup':         pesCup,
-  'mobile-legend':   mobileLegend,
-  'sang-juara':      sangJuara,
-  'masterchef':      masterchef,
+  'bootcamprox': bootcamprox,
+  'menembak': menembak,
+  'pes-cup': pesCup,
+  'mobile-legend': mobileLegend,
+  'sang-juara': sangJuara,
+  'masterchef': masterchef,
 };
 
 // Re-export types for consumers
@@ -151,6 +154,8 @@ export default function EventPage({
     eventsData[slug] ??
     buildDefaultEventData(disciplineNumber, eventTitle, eventDescription);
 
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -200,7 +205,36 @@ export default function EventPage({
 
       {/* ── Tournament Bracket ────────────────────────── */}
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
-        {data.bracketType === 'group-16' && data.groupBracket ? (
+        {data.categories && data.categories.length > 0 ? (
+          <>
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+              <div>
+                <h2 className="font-headline-lg text-headline-lg text-on-background uppercase mb-2">
+                  {data.bracketTitle}
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {data.categories.map((cat, idx) => (
+                    <button
+                      key={cat.name}
+                      onClick={() => setActiveTab(idx)}
+                      className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all border-2 ${
+                        activeTab === idx
+                          ? 'bg-primary border-primary text-on-primary'
+                          : 'border-on-surface text-on-surface hover:bg-surface-container'
+                      }`}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1 self-start md:self-center">
+                LIVE BRACKET
+              </span>
+            </div>
+            <MobileLegendBracket data={data.categories[activeTab].groupBracket} />
+          </>
+        ) : data.bracketType === 'group-16' && data.groupBracket ? (
           <>
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
@@ -210,7 +244,11 @@ export default function EventPage({
                 LIVE BRACKET
               </span>
             </div>
-            <MendadakBasketBracket data={data.groupBracket} />
+            {slug === 'mobile-legend' || slug === 'padel' ? (
+              <MobileLegendBracket data={data.groupBracket} />
+            ) : (
+              <MendadakBasketBracket data={data.groupBracket} />
+            )}
           </>
         ) : (
           <>
@@ -269,6 +307,21 @@ export default function EventPage({
           </>
         )}
       </section>
+
+      {/* ── Shooting Competition (mendadak-basket only) ── */}
+      {slug === 'mendadak-basket' && (
+        <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface-container-low">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+              Shooting Competition
+            </h2>
+            <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+              HIGHEST POINT WINS
+            </span>
+          </div>
+          <ShootingCompetition />
+        </section>
+      )}
 
       {/* ── Info / Description Section ────────────────── */}
       <section className="bg-on-background text-surface">

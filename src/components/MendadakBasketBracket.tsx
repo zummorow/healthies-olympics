@@ -1,189 +1,183 @@
-import type { GroupBracketData, GroupBracketSection, TeamSlot } from '../events/types';
+﻿import type { GroupBracketData, TeamSlot } from '../events/types';
 
-const SLOT_CLIP = 'polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%)';
-const SLOT_CLIP_RIGHT = 'polygon(0 0, calc(100% - 16px) 0, 100% 100%, 16px 100%)';
+const GOLD = '#f3d898';
+const DARK = '#1a1c1d';
+const DARKER = '#141516';
+const LINE = '#4a4d4f';
+const SLOT_CLIP_L = 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)';
+const SLOT_CLIP_R = 'polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%)';
 
-const SLOT_H = 56;
-const SLOT_GAP = 8;
+const SLOT_H = 44;
+const SLOT_GAP = 10;
+const GROUP_GAP = 32;
+const GROUP_H = 2 * SLOT_H + SLOT_GAP;
+const CONNECTOR_W = 36;
 
-function teamCenterY(index: number): number {
-  return index * (SLOT_H + SLOT_GAP) + SLOT_H / 2;
-}
+const Q1_Y_TOP = SLOT_H / 2;
+const Q1_Y_BOT = SLOT_H + SLOT_GAP + SLOT_H / 2;
+const Q1_MID = (Q1_Y_TOP + Q1_Y_BOT) / 2;
 
-function groupWinnerY(teamCount: number): number {
-  return ((teamCount - 1) * (SLOT_H + SLOT_GAP) + SLOT_H) / 2;
-}
+const TOP_WIN_Y = Q1_MID;
+const BOT_WIN_Y = GROUP_H + GROUP_GAP + Q1_MID;
+const MID_WIN_Y = (TOP_WIN_Y + BOT_WIN_Y) / 2;
 
-function TeamSlotBox({
-  team,
-  align = 'left',
-}: {
-  team: TeamSlot;
-  align?: 'left' | 'right';
-}) {
+function TeamSlotBox({ team, align }: { team: TeamSlot; align: 'left' | 'right' }) {
+  const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
   return (
-    <div
-      className="relative h-14 w-[210px] md:w-[260px] flex items-center"
-      style={{ clipPath: align === 'left' ? SLOT_CLIP : SLOT_CLIP_RIGHT }}
-    >
-      <div className="absolute inset-0 bg-[#2a2d2e] border-y border-[#f3d898]/35" />
-      <div
-        className={`absolute top-0 bottom-0 w-[4px] bg-[#f3d898]/70 ${
-          align === 'left' ? 'left-0' : 'right-0'
-        }`}
-      />
-      <span
-        className={`relative z-10 w-full px-6 text-base md:text-lg font-label-caps uppercase tracking-wide text-white truncate ${
-          align === 'right' ? 'text-right' : 'text-left'
-        } ${team.isWinner ? 'text-[#f3d898] font-bold' : ''}`}
-      >
+    <div className="relative flex items-center" style={{ clipPath: clip, width: 200, height: SLOT_H }}>
+      <div className="absolute inset-0" style={{ background: '#2a2d2f', borderTop: `1px solid ${GOLD}30`, borderBottom: `1px solid ${GOLD}30` }} />
+      {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
+      {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
+      <span className={`relative z-10 px-5 text-xs uppercase tracking-widest font-semibold truncate w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${align === 'right' ? 'text-right' : ''}`}>
         {team.name}
       </span>
     </div>
   );
 }
 
-function WinnerSlotBox({
-  team,
-  align = 'left',
-}: {
-  team: TeamSlot;
-  align?: 'left' | 'right';
-}) {
+function WinnerSlotBox({ label, align, highlight }: { label: string; align: 'left' | 'right'; highlight?: boolean }) {
+  const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
   return (
-    <div
-      className="relative h-14 w-[210px] md:w-[260px] flex items-center"
-      style={{ clipPath: align === 'left' ? SLOT_CLIP : SLOT_CLIP_RIGHT }}
-    >
-      <div className="absolute inset-0 bg-[#2a2d2e] border-y border-[#f3d898]/35" />
-      <div
-        className={`absolute top-2 bottom-2 w-[4px] bg-[#4fd1c5] ${
-          align === 'left' ? 'right-0' : 'left-0'
-        }`}
-      />
-      <span
-        className={`relative z-10 w-full px-6 text-base md:text-lg font-label-caps uppercase tracking-wide text-white truncate ${
-          align === 'right' ? 'text-right' : 'text-left'
-        } ${team.isWinner ? 'text-[#4fd1c5] font-bold' : ''}`}
-      >
-        {team.name}
+    <div className="relative flex items-center" style={{ clipPath: clip, width: 200, height: SLOT_H }}>
+      <div className="absolute inset-0" style={{ background: highlight ? '#2e2d20' : '#252729', borderTop: `1px solid ${GOLD}40`, borderBottom: `1px solid ${GOLD}40` }} />
+      {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
+      {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
+      <span className={`relative z-10 px-5 text-xs uppercase tracking-widest italic w-full ${highlight ? 'text-[#f3d898]/90' : 'text-white/50'} ${align === 'right' ? 'text-right' : ''}`}>
+        {label}
       </span>
     </div>
   );
 }
 
-function GroupLabel({
-  label,
-  position,
-}: {
-  label: string;
-  position: 'top-left' | 'bottom-left' | 'top-right' | 'bottom-right';
-}) {
-  const positionClass = {
-    'top-left': 'top-0 left-0',
-    'bottom-left': 'bottom-0 left-0',
-    'top-right': 'top-0 right-0',
-    'bottom-right': 'bottom-0 right-0',
-  }[position];
-
-  const clipPath = position.startsWith('top')
-    ? 'polygon(0 0, calc(100% - 14px) 0, 100% 100%, 14px 100%)'
-    : 'polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%)';
-
+function LeftConnector1() {
+  const w = CONNECTOR_W; const h = GROUP_H;
   return (
-    <div
-      className={`absolute ${positionClass} z-10 px-5 py-2 bg-[#f3d898] text-[#1f2122] font-label-caps text-sm md:text-base uppercase tracking-widest`}
-      style={{ clipPath }}
-    >
-      {label}
-    </div>
-  );
-}
-
-function GroupConnectors({
-  side,
-  teamCount,
-}: {
-  side: 'left' | 'right';
-  teamCount: number;
-}) {
-  const mirror = side === 'right';
-  const totalH = teamCount * SLOT_H + (teamCount - 1) * SLOT_GAP;
-  const winY = groupWinnerY(teamCount);
-  const mid1 = (teamCenterY(0) + teamCenterY(1)) / 2;
-  const mid2 = (teamCenterY(2) + teamCenterY(3)) / 2;
-  const xMid = 24;
-  const xEnd = mirror ? 48 : 0;
-
-  const paths = [
-    `M ${mirror ? 0 : 48} ${teamCenterY(0)} L ${xMid} ${teamCenterY(0)} L ${xMid} ${mid1} L ${mirror ? 0 : 48} ${teamCenterY(1)}`,
-    `M ${xMid} ${mid1} L ${xMid} ${winY} L ${xEnd} ${winY}`,
-    `M ${mirror ? 0 : 48} ${teamCenterY(2)} L ${xMid} ${teamCenterY(2)} L ${xMid} ${mid2} L ${mirror ? 0 : 48} ${teamCenterY(3)}`,
-    `M ${xMid} ${mid2} L ${xMid} ${winY} L ${xEnd} ${winY}`,
-  ];
-
-  return (
-    <svg
-      className="w-10 md:w-14 shrink-0"
-      style={{ height: totalH }}
-      viewBox={`0 0 48 ${totalH}`}
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      {paths.map((d, i) => (
-        <path key={i} d={d} fill="none" stroke="#5a5d5e" strokeWidth="2" />
-      ))}
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden style={{ display: 'block', flexShrink: 0 }}>
+      <path d={`M 0 ${Q1_Y_TOP} L ${w/2} ${Q1_Y_TOP} L ${w/2} ${Q1_MID} L 0 ${Q1_Y_BOT}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+      <path d={`M ${w/2} ${Q1_MID} L ${w} ${Q1_MID}`} fill="none" stroke={LINE} strokeWidth="1.5" />
     </svg>
   );
 }
 
-function GroupBlock({
-  group,
-  align,
-}: {
-  group: GroupBracketSection;
-  align: 'left' | 'right';
-}) {
-  const winner = group.winner ?? { name: 'Winner' };
-
+function RightConnector1() {
+  const w = CONNECTOR_W; const h = GROUP_H;
   return (
-    <div className={`flex items-center ${align === 'right' ? 'flex-row-reverse' : ''}`}>
-      <div className="flex flex-col gap-2">
-        {group.teams.map((team, i) => (
-          <TeamSlotBox key={`${group.label}-${i}`} team={team} align={align} />
-        ))}
-      </div>
-      <GroupConnectors side={align} teamCount={group.teams.length} />
-      <WinnerSlotBox team={winner} align={align} />
-    </div>
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden style={{ display: 'block', flexShrink: 0 }}>
+      <path d={`M ${w} ${Q1_Y_TOP} L ${w/2} ${Q1_Y_TOP} L ${w/2} ${Q1_MID} L ${w} ${Q1_Y_BOT}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+      <path d={`M ${w/2} ${Q1_MID} L 0 ${Q1_MID}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+    </svg>
   );
 }
 
-function BracketHalf({
-  side,
-  topGroup,
-  bottomGroup,
-}: {
-  side: 'left' | 'right';
-  topGroup: GroupBracketSection;
-  bottomGroup: GroupBracketSection;
-}) {
-  const align = side === 'left' ? 'left' : 'right';
-
+function LeftConnector2() {
+  const w = CONNECTOR_W; const h = GROUP_H * 2 + GROUP_GAP;
   return (
-    <div className="relative flex-1 min-w-[340px] md:min-w-[420px] pt-10 pb-10">
-      <GroupLabel
-        label={topGroup.label}
-        position={side === 'left' ? 'top-left' : 'top-right'}
-      />
-      <GroupLabel
-        label={bottomGroup.label}
-        position={side === 'left' ? 'bottom-left' : 'bottom-right'}
-      />
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden style={{ display: 'block', flexShrink: 0 }}>
+      <path d={`M 0 ${TOP_WIN_Y} L ${w/2} ${TOP_WIN_Y} L ${w/2} ${MID_WIN_Y} L 0 ${BOT_WIN_Y}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+      <path d={`M ${w/2} ${MID_WIN_Y} L ${w} ${MID_WIN_Y}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+    </svg>
+  );
+}
 
-      <div className="flex flex-col gap-12">
-        <GroupBlock group={topGroup} align={align} />
-        <GroupBlock group={bottomGroup} align={align} />
+function RightConnector2() {
+  const w = CONNECTOR_W; const h = GROUP_H * 2 + GROUP_GAP;
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden style={{ display: 'block', flexShrink: 0 }}>
+      <path d={`M ${w} ${TOP_WIN_Y} L ${w/2} ${TOP_WIN_Y} L ${w/2} ${MID_WIN_Y} L ${w} ${BOT_WIN_Y}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+      <path d={`M ${w/2} ${MID_WIN_Y} L 0 ${MID_WIN_Y}`} fill="none" stroke={LINE} strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+interface HalfProps {
+  side: 'left' | 'right';
+  groupLabel: string;
+  teams: TeamSlot[];
+}
+
+function BracketHalf({ side, groupLabel, teams }: HalfProps) {
+  const align = side;
+  const isRight = side === 'right';
+  const labelClip = isRight
+    ? 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%)'
+    : 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)';
+
+  const topTeams = teams.slice(0, 2);
+  const botTeams = teams.slice(2, 4);
+
+  const TeamPair = ({ pairTeams }: { pairTeams: TeamSlot[] }) => (
+    <div className="flex flex-col" style={{ gap: SLOT_GAP }}>
+      {pairTeams.map((t, i) => <TeamSlotBox key={i} team={t} align={align} />)}
+    </div>
+  );
+
+  if (!isRight) {
+    return (
+      <div className="flex flex-col relative" style={{ paddingTop: 40 }}>
+        <div className="absolute top-0 left-0 px-5 py-1 text-xs font-bold uppercase tracking-widest"
+          style={{ background: GOLD, color: DARKER, clipPath: labelClip, letterSpacing: '0.15em' }}>
+          {groupLabel}
+        </div>
+        <div className="flex items-center">
+          <div className="flex flex-col" style={{ gap: GROUP_GAP }}>
+            <div className="flex items-center">
+              <TeamPair pairTeams={topTeams} />
+              <LeftConnector1 />
+              <WinnerSlotBox label="Winner Q1" align="left" />
+            </div>
+            <div className="flex items-center">
+              <TeamPair pairTeams={botTeams} />
+              <LeftConnector1 />
+              <WinnerSlotBox label="Winner Q1" align="left" />
+            </div>
+          </div>
+          <LeftConnector2 />
+          <WinnerSlotBox label="Winner Q2" align="left" highlight />
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-col relative" style={{ paddingTop: 40 }}>
+        <div className="absolute top-0 right-0 px-5 py-1 text-xs font-bold uppercase tracking-widest"
+          style={{ background: GOLD, color: DARKER, clipPath: labelClip, letterSpacing: '0.15em' }}>
+          {groupLabel}
+        </div>
+        <div className="flex items-center">
+          <WinnerSlotBox label="Winner Q2" align="right" highlight />
+          <RightConnector2 />
+          <div className="flex flex-col" style={{ gap: GROUP_GAP }}>
+            <div className="flex items-center">
+              <WinnerSlotBox label="Winner Q1" align="right" />
+              <RightConnector1 />
+              <TeamPair pairTeams={topTeams} />
+            </div>
+            <div className="flex items-center">
+              <WinnerSlotBox label="Winner Q1" align="right" />
+              <RightConnector1 />
+              <TeamPair pairTeams={botTeams} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+function CenterColumn() {
+  return (
+    <div className="flex flex-col items-center justify-center shrink-0 self-stretch relative" style={{ width: 120 }}>
+      <div className="absolute left-1/2 top-0 bottom-0" style={{ width: 1, background: LINE, transform: 'translateX(-50%)' }} />
+      <div className="flex flex-col items-center gap-3 relative z-10">
+        <span className="text-[10px] uppercase tracking-[0.25em] font-semibold" style={{ color: 'white', opacity: 0.6 }}>
+          Champion
+        </span>
+        <div className="flex items-center justify-center rounded-full"
+          style={{ width: 72, height: 72, background: GOLD, boxShadow: `0 0 28px ${GOLD}55` }}>
+          <span style={{ color: DARKER, fontWeight: 900, fontSize: 22, letterSpacing: '0.08em', lineHeight: 1 }}>
+            VS
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -191,38 +185,20 @@ function BracketHalf({
 
 export default function MendadakBasketBracket({ data }: { data: GroupBracketData }) {
   return (
-    <div className="bg-[#1f2122] rounded-sm overflow-hidden">
-      <div className="text-center pt-10 pb-8 px-4">
-        <h3 className="font-display-lg text-[36px] md:text-[48px] text-[#f3d898] uppercase tracking-wide leading-none">
+    <div className="rounded-sm overflow-hidden" style={{ background: DARK }}>
+      <div className="text-center pt-10 pb-6 px-4">
+        <h3 className="uppercase leading-none" style={{ color: GOLD, fontSize: 'clamp(22px, 3.5vw, 40px)', fontWeight: 900, letterSpacing: '0.08em' }}>
           {data.title}
         </h3>
-        <p className="mt-3 font-label-caps text-sm md:text-base text-white/80 uppercase tracking-[0.25em]">
+        <p className="mt-3 uppercase" style={{ color: 'white', opacity: 0.65, fontSize: 12, letterSpacing: '0.28em' }}>
           {data.subtitle}
         </p>
       </div>
-
-      <div className="overflow-x-auto pb-10 px-4 md:px-10">
-        <div className="min-w-[780px] max-w-6xl mx-auto flex items-center gap-0">
-          <BracketHalf
-            side="left"
-            topGroup={data.leftTop}
-            bottomGroup={data.leftBottom}
-          />
-
-          <div className="relative flex flex-col items-center justify-center shrink-0 w-20 md:w-24 self-stretch">
-            <div className="absolute top-10 bottom-10 left-1/2 w-px bg-[#5a5d5e] -translate-x-1/2" />
-            <div className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#f3d898] flex items-center justify-center shadow-[0_0_24px_rgba(243,216,152,0.35)]">
-              <span className="font-display-lg text-2xl md:text-3xl text-[#1f2122] uppercase leading-none">
-                VS
-              </span>
-            </div>
-          </div>
-
-          <BracketHalf
-            side="right"
-            topGroup={data.rightTop}
-            bottomGroup={data.rightBottom}
-          />
+      <div className="overflow-x-auto pb-10 px-4 md:px-8">
+        <div className="mx-auto flex items-center justify-center" style={{ minWidth: 800, gap: 0 }}>
+          <BracketHalf side="left" groupLabel={data.leftTop.label} teams={[...data.leftTop.teams, ...data.leftBottom.teams]} />
+          <CenterColumn />
+          <BracketHalf side="right" groupLabel={data.rightTop.label} teams={[...data.rightTop.teams, ...data.rightBottom.teams]} />
         </div>
       </div>
     </div>

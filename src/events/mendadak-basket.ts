@@ -14,30 +14,32 @@ const mendadakBasket: EventData = {
     'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
   rulesUrl: '#',
   bracketType: 'group-16',
-  bracketTitle: 'TOURNAMENT',
+  bracketTitle: 'TOURNAMENT 3 ON 3 MALE',
 
   groupBracket: {
-    title: 'TOURNAMENT',
-    subtitle: '16 TEAMS',
+    title: 'TOURNAMENT 3 ON 3 MALE',
+    subtitle: '8 TEAMS',
+    // Group A — left half (4 teams, 2 per sub-group)
     leftTop: {
       label: 'GROUP A',
-      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
-      winner: team('Winner'),
+      teams: [team('Team Name'), team('Team Name')],
+      winner: team('Winner Q1'),
     },
     leftBottom: {
-      label: 'GROUP C',
-      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
-      winner: team('Winner'),
+      label: 'GROUP A',
+      teams: [team('Team Name'), team('Team Name')],
+      winner: team('Winner Q1'),
     },
+    // Group B — right half (4 teams, 2 per sub-group)
     rightTop: {
       label: 'GROUP B',
-      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
-      winner: team('Winner'),
+      teams: [team('Team Name'), team('Team Name')],
+      winner: team('Winner Q1'),
     },
     rightBottom: {
-      label: 'GROUP D',
-      teams: [team('Team Name'), team('Team Name'), team('Team Name'), team('Team Name')],
-      winner: team('Winner'),
+      label: 'GROUP B',
+      teams: [team('Team Name'), team('Team Name')],
+      winner: team('Winner Q1'),
     },
   },
 
@@ -57,3 +59,4 @@ const mendadakBasket: EventData = {
 };
 
 export default mendadakBasket;
+
