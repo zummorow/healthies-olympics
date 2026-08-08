@@ -47,7 +47,7 @@ export type EventData = {
   title: string;             // Nama event besar
   description: string;       // Deskripsi singkat
   rulesUrl?: string;         // Link download aturan
-  bracketType?: 'standard' | 'group-16' | 'group-8' | 'leaderboard' | 'none';
+  bracketType?: 'standard' | 'group-16' | 'group-8' | 'leaderboard' | 'point-table' | 'none';
   bracketTitle: string;      // "8-TEAM CORPORATE RELAY"
   bootcamproxTeams?: BootcamproxTeam[]; // Data 16 tim untuk leaderboard Bootcamprox
   groupBracket?: GroupBracketData;

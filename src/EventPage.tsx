@@ -7,6 +7,7 @@ import MobileLegendBracket from './components/MobileLegendBracket';
 import ShootingCompetition from './components/ShootingCompetition';
 import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
 import FutsalBracket from './components/FutsalBracket';
+import MenembakLeaderboard from './components/MenembakLeaderboard';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -18,7 +19,7 @@ import mendadakBasket from './events/mendadak-basket';
 import relayRunning from './events/relay-running';
 import artPerformance from './events/art-performance';
 import bootcamprox from './events/bootcamprox';
-import menembak from './events/menembak';
+import menembak, { menembakTeams } from './events/menembak';
 import pesCup from './events/pes-cup';
 import mobileLegend from './events/mobile-legend';
 import sangJuara from './events/sang-juara';
@@ -213,6 +214,18 @@ export default function EventPage({
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
         {data.bracketType === 'leaderboard' || data.bootcamproxTeams ? (
           <BootcamproxLeaderboard teams={data.bootcamproxTeams} />
+        ) : data.bracketType === 'point-table' ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE STANDINGS
+              </span>
+            </div>
+            <MenembakLeaderboard teams={menembakTeams} />
+          </>
         ) : data.categories && data.categories.length > 0 ? (
           <>
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
