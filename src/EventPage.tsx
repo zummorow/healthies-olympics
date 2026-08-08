@@ -10,10 +10,11 @@ import FutsalBracket from './components/FutsalBracket';
 import MenembakLeaderboard from './components/MenembakLeaderboard';
 import RelayRunningLeaderboard from './components/RelayRunningLeaderboard';
 import MasterchefLeaderboard from './components/MasterchefLeaderboard';
+import BadmintonComponent from './components/BadmintonComponent';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
-import badminton from './events/badminton';
+import badminton, { badmintonData } from './events/badminton';
 import padel from './events/padel';
 import tennis from './events/tennis';
 import futsal, { futsalBracketData } from './events/futsal';
@@ -217,6 +218,18 @@ export default function EventPage({
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
         {data.bracketType === 'leaderboard' || data.bootcamproxTeams ? (
           <BootcamproxLeaderboard teams={data.bootcamproxTeams} />
+        ) : data.bracketType === 'badminton-rr' ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE BRACKET
+              </span>
+            </div>
+            <BadmintonComponent categories={badmintonData} />
+          </>
         ) : data.bracketType === 'point-table' ? (
           <>
             <div className="flex items-center justify-between mb-8">

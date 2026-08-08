@@ -1,69 +1,110 @@
 import type { EventData } from './types';
+import type { BadmintonCategoryData } from '../components/BadmintonComponent';
 
 // ============================================================
-// BADMINTON — Discipline 02
-// FILE INI DI-GENERATE OTOMATIS dari Google Sheet.
-// Jangan edit manual — update di sheet, lalu jalankan ulang
-// generate-badminton.mjs.
+// BADMINTON / TEPOK BULU — Discipline 02
+// Edit bagian BADMINTON DATA di bawah untuk update hasil
+// pertandingan dan perolehan poin setiap tim.
 // ============================================================
 
-const createPlaceholderGroup = (title: string) => ({
-  title,
-  subtitle: '16 TEAMS TOURNAMENT',
-  leftTop: {
-    label: 'GROUP A',
-    teams: [
-      { name: 'Team 1' }, { name: 'Team 2' },
-      { name: 'Team 3' }, { name: 'Team 4' }
-    ]
-  },
-  leftBottom: {
-    label: 'GROUP C',
-    teams: [
-      { name: 'Team 5' }, { name: 'Team 6' },
-      { name: 'Team 7' }, { name: 'Team 8' }
-    ]
-  },
-  rightTop: {
-    label: 'GROUP B',
-    teams: [
-      { name: 'Team 9' }, { name: 'Team 10' },
-      { name: 'Team 11' }, { name: 'Team 12' }
-    ]
-  },
-  rightBottom: {
-    label: 'GROUP D',
-    teams: [
-      { name: 'Team 13' }, { name: 'Team 14' },
-      { name: 'Team 15' }, { name: 'Team 16' }
-    ]
-  },
+// ============================================================================
+// CARA UPDATE TABEL ROUND-ROBIN:
+//
+// 1. Ganti `satuanKerja` dengan nama satuan kerja / tim.
+//    Contoh: satuanKerja: 'Sekretariat Jenderal'
+//
+// 2. Update statistik setelah setiap pertandingan selesai:
+//    - tanding : total pertandingan yang sudah dimainkan
+//    - menang  : jumlah menang
+//    - seri    : jumlah seri
+//    - kalah   : jumlah kalah
+//    - point   : total poin (biasanya menang=3, seri=1, kalah=0)
+//
+//    Contoh setelah 2 pertandingan (1 menang 1 kalah):
+//    { satuanKerja: 'Setjen', tanding: 2, menang: 1, seri: 0, kalah: 1, point: 3 }
+//
+//    Tabel akan otomatis urut dari poin terbesar.
+//
+// CARA UPDATE BRACKET FINAL:
+//
+// 1. Isi `sf1` dan `sf2` saat semi-final sudah dijadwalkan.
+//    Tandai `isWinner: true` pada tim yang menang SF.
+//    Contoh: sf1: { team1: { team: 'Setjen', isWinner: true }, team2: { team: 'Itjen' } }
+//
+// 2. Isi `final` saat kedua finalis sudah diketahui.
+//    Tambahkan `isWinner: true` pada pemenang akhir.
+// ============================================================================
+
+// ── Helper: buat tim kosong dengan nilai 0 ───────────────────
+const emptyTeam = (satuanKerja: string) => ({
+  satuanKerja,
+  tanding: 0,
+  menang: 0,
+  seri: 0,
+  kalah: 0,
+  point: 0,
 });
 
+// ── BADMINTON DATA — edit bagian ini ─────────────────────────
+export const badmintonData: BadmintonCategoryData[] = [
+
+  // ════════════════════════════════════════════════════════════
+  // DATA BRACKET — update nama tim & statistik di sini
+  // ════════════════════════════════════════════════════════════
+  {
+    name: '',   // dikosongkan — tab kategori tidak ditampilkan
+    groups: [
+      {
+        label: 'GROUP A',
+        teams: [
+          // 4 tim di Grup A — update satuanKerja & statistik di sini
+          emptyTeam('Tim A1'),   // ← ganti nama tim
+          emptyTeam('Tim A2'),   // ← ganti nama tim
+          emptyTeam('Tim A3'),   // ← ganti nama tim
+          emptyTeam('Tim A4'),   // ← ganti nama tim
+        ],
+      },
+      {
+        label: 'GROUP B',
+        teams: [
+          // 4 tim di Grup B — update satuanKerja & statistik di sini
+          emptyTeam('Tim B1'),   // ← ganti nama tim
+          emptyTeam('Tim B2'),   // ← ganti nama tim
+          emptyTeam('Tim B3'),   // ← ganti nama tim
+          emptyTeam('Tim B4'),   // ← ganti nama tim
+        ],
+      },
+    ],
+    finalBracket: {
+      // SF1: Juara Grup A vs Runner-up Grup B — isi setelah fase grup selesai
+      sf1: {
+        team1: { team: undefined },   // ← isi nama tim (juara Grup A)
+        team2: { team: undefined },   // ← isi nama tim (runner-up Grup B)
+      },
+      // SF2: Juara Grup B vs Runner-up Grup A — isi setelah fase grup selesai
+      sf2: {
+        team1: { team: undefined },   // ← isi nama tim (juara Grup B)
+        team2: { team: undefined },   // ← isi nama tim (runner-up Grup A)
+      },
+      // Final — isi setelah semi-final selesai
+      final: {
+        team1: { team: undefined },   // ← isi nama tim finalis 1
+        team2: { team: undefined },   // ← isi nama tim finalis 2
+      },
+    },
+  },
+];
+
+// ── EVENT DATA (metadata & info section) ──────────────────────
 const badminton: EventData = {
   discipline: '02',
   title: 'TEPOK BULU',
   description: 'Turnamen bulu tangkis beregu dan perorangan.',
   rulesUrl: '#',
-  bracketType: 'none',
+  bracketType: 'badminton-rr',   // ← pakai BadmintonComponent
   bracketTitle: 'TEPOK BULU TOURNAMENT',
 
-  categories: [
-    {
-      name: 'Ganda Putri',
-      groupBracket: createPlaceholderGroup('GANDA PUTRI')
-    },
-    {
-      name: 'Ganda Putra',
-      groupBracket: createPlaceholderGroup('GANDA PUTRA')
-    },
-    {
-      name: 'Ganda Campuran',
-      groupBracket: createPlaceholderGroup('GANDA CAMPURAN')
-    }
-  ],
-
-  // Placeholders — tidak digunakan saat menggunakan kategori
+  // Placeholder — tidak digunakan saat bracketType = 'badminton-rr'
   leftBracket: [],
   rightBracket: [],
   sf1: { team1: { name: '—' }, team2: { name: '—' } },
