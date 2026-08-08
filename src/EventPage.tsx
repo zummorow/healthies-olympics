@@ -8,6 +8,7 @@ import ShootingCompetition from './components/ShootingCompetition';
 import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
 import FutsalBracket from './components/FutsalBracket';
 import MenembakLeaderboard from './components/MenembakLeaderboard';
+import RelayRunningLeaderboard from './components/RelayRunningLeaderboard';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -16,7 +17,7 @@ import padel from './events/padel';
 import tennis from './events/tennis';
 import futsal, { futsalBracketData } from './events/futsal';
 import mendadakBasket from './events/mendadak-basket';
-import relayRunning from './events/relay-running';
+import relayRunning, { relayTeams } from './events/relay-running';
 import artPerformance from './events/art-performance';
 import bootcamprox from './events/bootcamprox';
 import menembak, { menembakTeams } from './events/menembak';
@@ -225,6 +226,18 @@ export default function EventPage({
               </span>
             </div>
             <MenembakLeaderboard teams={menembakTeams} />
+          </>
+        ) : data.bracketType === 'time-table' ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE STANDINGS
+              </span>
+            </div>
+            <RelayRunningLeaderboard teams={relayTeams} />
           </>
         ) : data.categories && data.categories.length > 0 ? (
           <>
