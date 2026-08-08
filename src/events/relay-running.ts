@@ -1,5 +1,6 @@
 import type { EventData } from './types';
 import type { RelayTeam } from '../components/RelayRunningLeaderboard';
+import relay from "../assets/running.webp";
 
 // ============================================================
 // RELAY RUNNING — Discipline 07
@@ -31,22 +32,22 @@ export const relayTeams: RelayTeam[] = [
   // Format: { teamName: 'Nama Tim', unit: 'Unit Utama', time: 'MM:SS.ms' }
   // Kosongkan time ('') jika hasil belum tersedia.
 
-  { teamName: 'Tim 1',  unit: 'Sekretariat Jenderal',                           time: '' },
-  { teamName: 'Tim 2',  unit: 'Sekretariat Jenderal',                           time: '' },
-  { teamName: 'Tim 3',  unit: 'Inspektorat Jenderal',                           time: '' },
-  { teamName: 'Tim 4',  unit: 'Inspektorat Jenderal',                           time: '' },
-  { teamName: 'Tim 5',  unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
-  { teamName: 'Tim 6',  unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
-  { teamName: 'Tim 7',  unit: 'Direktorat Jenderal Kesehatan Lanjutan',         time: '' },
-  { teamName: 'Tim 8',  unit: 'Direktorat Jenderal Kesehatan Lanjutan',         time: '' },
-  { teamName: 'Tim 9',  unit: 'Direktorat Jenderal Penanggulangan Penyakit',    time: '' },
-  { teamName: 'Tim 10', unit: 'Direktorat Jenderal Penanggulangan Penyakit',    time: '' },
+  { teamName: 'Tim 1', unit: 'Sekretariat Jenderal', time: '' },
+  { teamName: 'Tim 2', unit: 'Sekretariat Jenderal', time: '' },
+  { teamName: 'Tim 3', unit: 'Inspektorat Jenderal', time: '' },
+  { teamName: 'Tim 4', unit: 'Inspektorat Jenderal', time: '' },
+  { teamName: 'Tim 5', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
+  { teamName: 'Tim 6', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
+  { teamName: 'Tim 7', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '' },
+  { teamName: 'Tim 8', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '' },
+  { teamName: 'Tim 9', unit: 'Direktorat Jenderal Penanggulangan Penyakit', time: '' },
+  { teamName: 'Tim 10', unit: 'Direktorat Jenderal Penanggulangan Penyakit', time: '' },
   { teamName: 'Tim 11', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', time: '' },
   { teamName: 'Tim 12', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', time: '' },
-  { teamName: 'Tim 13', unit: 'Direktorat Jenderal SDM Kesehatan',              time: '' },
-  { teamName: 'Tim 14', unit: 'Direktorat Jenderal SDM Kesehatan',              time: '' },
-  { teamName: 'Tim 15', unit: 'Badan Kebijakan Pembangunan Kesehatan',          time: '' },
-  { teamName: 'Tim 16', unit: 'Badan Kebijakan Pembangunan Kesehatan',          time: '' },
+  { teamName: 'Tim 13', unit: 'Direktorat Jenderal SDM Kesehatan', time: '' },
+  { teamName: 'Tim 14', unit: 'Direktorat Jenderal SDM Kesehatan', time: '' },
+  { teamName: 'Tim 15', unit: 'Badan Kebijakan Pembangunan Kesehatan', time: '' },
+  { teamName: 'Tim 16', unit: 'Badan Kebijakan Pembangunan Kesehatan', time: '' },
 ];
 
 // ── EVENT DATA (metadata & info section) ──────────────────────
@@ -67,11 +68,11 @@ const relayRunning: EventData = {
   final: { team1: { name: '—' }, team2: { name: '—' } },
   thirdPlace: { team1: { name: '—' }, team2: { name: '—' } },
 
-  infoImage: 'https://images.unsplash.com/photo-1594882645126-14020914d58d?w=800&q=80',
+  infoImage: relay,
   infoTitle: 'RELAY RUNNING',
   infoText:
     'Estafet membutuhkan sinkronisasi sempurna antara pelari. Latihan transisi dan strategi urutan adalah kunci kemenangan.',
-  infoPoints: ['Format 4×100M', 'Mixed Gender', 'Chip Timing'],
+  infoPoints: ['Format 4×515M', 'Mixed Gender', 'Chip Timing'],
 };
 
 export default relayRunning;
