@@ -272,23 +272,28 @@ function App() {
               <div className="space-y-4">
                 {/* Schedule Item */}
                 <div className="flex items-center gap-8 p-6 bg-surface-container hover:bg-surface-container-high border-b-2 border-on-surface group transition-colors">
-                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32">Agu 1</div>
+                  <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32">Agu 10</div>
                   <div className="flex-grow">
-                    <h4 className="font-headline-lg text-headline-lg-mobile">Team Registration Opens</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant">Global portal activation for all corporate entities.</p>
+                    <h4 className="font-headline-lg text-headline-lg-mobile">Opening Ceremony</h4>
+                    <p className="font-body-md text-body-md text-on-surface-variant">Lapangan Hijau Kementerian Kesehatan</p>
                   </div>
                   <div className="material-symbols-outlined group-hover:rotate-45 transition-transform">north_east</div>
                 </div>
 
-                {/* Schedule Item */}
-                <div className="flex items-center gap-8 p-6 bg-surface-container-low border-b-2 border-on-surface group transition-colors">
+                {/* Schedule Item — Calendar Event (klik untuk buka link) */}
+                <a
+                  href="https://drive.google.com/file/d/1DQtfIiVVVSAjzO6-GmfnRLCQGtNkjGf3/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-8 p-6 bg-surface-container-low hover:bg-surface-container-high border-b-2 border-on-surface group transition-colors cursor-pointer"
+                >
                   <div className="font-label-caps text-headline-lg-mobile text-on-surface-variant w-32 text-primary font-black">Agu 7</div>
                   <div className="flex-grow">
-                    <h4 className="font-headline-lg text-headline-lg-mobile">THE MAIN EVENT</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant">Opening ceremony and Day 1 competition heats.</p>
+                    <h4 className="font-headline-lg text-headline-lg-mobile">Calendar Event</h4>
+                    <p className="font-body-md text-body-md text-on-surface-variant">Lihat jadwal lengkap kegiatan Healthies Olympics 2026</p>
                   </div>
                   <div className="material-symbols-outlined group-hover:rotate-45 transition-transform text-primary">north_east</div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
