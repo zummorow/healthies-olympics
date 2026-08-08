@@ -45,7 +45,7 @@ const badminton: EventData = {
   title: 'TEPOK BULU',
   description: 'Turnamen bulu tangkis beregu dan perorangan.',
   rulesUrl: '#',
-  bracketType: 'group-16',
+  bracketType: 'none',
   bracketTitle: 'TEPOK BULU TOURNAMENT',
 
   categories: [

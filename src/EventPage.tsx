@@ -6,13 +6,14 @@ import MendadakBasketBracket from './components/MendadakBasketBracket';
 import MobileLegendBracket from './components/MobileLegendBracket';
 import ShootingCompetition from './components/ShootingCompetition';
 import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
+import FutsalBracket from './components/FutsalBracket';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
 import badminton from './events/badminton';
 import padel from './events/padel';
 import tennis from './events/tennis';
-import futsal from './events/futsal';
+import futsal, { futsalBracketData } from './events/futsal';
 import mendadakBasket from './events/mendadak-basket';
 import relayRunning from './events/relay-running';
 import artPerformance from './events/art-performance';
@@ -208,6 +209,7 @@ export default function EventPage({
       </section>
 
       {/* ── Tournament Bracket ────────────────────────── */}
+      {data.bracketType !== 'none' && (
       <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface">
         {data.bracketType === 'leaderboard' || data.bootcamproxTeams ? (
           <BootcamproxLeaderboard teams={data.bootcamproxTeams} />
@@ -239,6 +241,18 @@ export default function EventPage({
               </span>
             </div>
             <MobileLegendBracket data={data.categories[activeTab].groupBracket} />
+          </>
+        ) : data.bracketType === 'group-8' ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                LIVE BRACKET
+              </span>
+            </div>
+            <FutsalBracket data={futsalBracketData} />
           </>
         ) : data.bracketType === 'group-16' && data.groupBracket ? (
           <>
@@ -313,6 +327,7 @@ export default function EventPage({
           </>
         )}
       </section>
+      )}
 
       {/* ── Shooting Competition (mendadak-basket only) ── */}
       {slug === 'mendadak-basket' && (
