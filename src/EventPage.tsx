@@ -20,7 +20,7 @@ import tennis from './events/tennis';
 import futsal, { futsalBracketData } from './events/futsal';
 import mendadakBasket from './events/mendadak-basket';
 import relayRunning, { relayTeams } from './events/relay-running';
-import artPerformance from './events/art-performance';
+import artPerformance, { artPerformanceTeams } from './events/art-performance';
 import bootcamprox from './events/bootcamprox';
 import menembak, { menembakTeams } from './events/menembak';
 import pesCup from './events/pes-cup';
@@ -247,6 +247,8 @@ export default function EventPage({
               <MasterchefLeaderboard teams={masterchefTeams} title="Si Jago Masak" />
             ) : slug === 'sang-juara' ? (
               <MasterchefLeaderboard teams={sangJuaraTeams} title="Sang Juara Season III" subtitle="Akumulasi Poin Tertinggi Adalah Pemenang" />
+            ) : slug === 'art-performance' ? (
+              <MasterchefLeaderboard teams={artPerformanceTeams} title="Art Performance" subtitle="Poin Tertinggi Adalah Pemenang" />
             ) : null}
           </>
         ) : data.bracketType === 'time-table' ? (
