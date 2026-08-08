@@ -9,6 +9,7 @@ import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
 import FutsalBracket from './components/FutsalBracket';
 import MenembakLeaderboard from './components/MenembakLeaderboard';
 import RelayRunningLeaderboard from './components/RelayRunningLeaderboard';
+import MasterchefLeaderboard from './components/MasterchefLeaderboard';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -23,8 +24,8 @@ import bootcamprox from './events/bootcamprox';
 import menembak, { menembakTeams } from './events/menembak';
 import pesCup from './events/pes-cup';
 import mobileLegend from './events/mobile-legend';
-import sangJuara from './events/sang-juara';
-import masterchef from './events/masterchef';
+import sangJuara, { sangJuaraTeams } from './events/sang-juara';
+import masterchef, { masterchefTeams } from './events/masterchef';
 
 // ── Registry: slug → EventData ───────────────────────────────
 export const eventsData: Record<string, EventData> = {
@@ -43,6 +44,7 @@ export const eventsData: Record<string, EventData> = {
   'mobile-legend': mobileLegend,
   'sang-juara': sangJuara,
   'masterchef': masterchef,
+  'si-jago-masak': masterchef,   // alias slug dari App.tsx
 };
 
 // Re-export types for consumers
@@ -225,7 +227,14 @@ export default function EventPage({
                 LIVE STANDINGS
               </span>
             </div>
-            <MenembakLeaderboard teams={menembakTeams} />
+            {/* Routing per-slug untuk komponen point-table yang berbeda */}
+            {slug === 'menembak' ? (
+              <MenembakLeaderboard teams={menembakTeams} />
+            ) : slug === 'masterchef' || slug === 'si-jago-masak' ? (
+              <MasterchefLeaderboard teams={masterchefTeams} title="Si Jago Masak" />
+            ) : slug === 'sang-juara' ? (
+              <MasterchefLeaderboard teams={sangJuaraTeams} title="Sang Juara Season III" subtitle="Akumulasi Poin Tertinggi Adalah Pemenang" />
+            ) : null}
           </>
         ) : data.bracketType === 'time-table' ? (
           <>
