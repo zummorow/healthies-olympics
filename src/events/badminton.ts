@@ -100,7 +100,7 @@ const badminton: EventData = {
   discipline: '02',
   title: 'TEPOK BULU',
   description: 'Turnamen bulu tangkis beregu dan perorangan.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1PmDMa1C-OtvsDnPJLer0mQiBjF2kPNE7/view?usp=drive_link',
   bracketType: 'badminton-rr',   // ← pakai BadmintonComponent
   bracketTitle: 'TEPOK BULU TOURNAMENT',
 
@@ -115,7 +115,7 @@ const badminton: EventData = {
   infoImage: 'https://img.inews.id/media/822/files/inews_new/2020/03/31/bulutangkis.jpg',
   infoTitle: 'TEPOK BULU',
   infoText: 'Turnamen bulu tangkis internal antar pegawai Kementerian Kesehatan.',
-  infoPoints: ['Format Ganda Putra', 'Format Ganda Putri', 'Format Ganda Campuran'],
+  infoPoints: ['Format Ganda Putra', 'Format Ganda Putri', 'Ganda putra usia minimal 50 tahun (kelahiran tahun 1976)'],
 };
 
 export default badminton;
