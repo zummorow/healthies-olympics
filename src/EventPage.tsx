@@ -4,7 +4,7 @@ import type { TeamSlot, BracketRound, BracketMatch, EventData } from './events/t
 import { buildDefaultEventData } from './events/types';
 import MendadakBasketBracket from './components/MendadakBasketBracket';
 import MobileLegendBracket from './components/MobileLegendBracket';
-import ShootingCompetition from './components/ShootingCompetition';
+
 import BootcamproxLeaderboard from './components/BootcamproxLeaderboard';
 import FutsalBracket from './components/FutsalBracket';
 import MenembakLeaderboard from './components/MenembakLeaderboard';
@@ -379,20 +379,7 @@ export default function EventPage({
       </section>
       )}
 
-      {/* ── Shooting Competition (mendadak-basket only) ── */}
-      {slug === 'mendadak-basket' && (
-        <section className="px-margin-mobile md:px-margin-desktop py-12 bg-surface-container-low">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
-              Shooting Competition
-            </h2>
-            <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
-              HIGHEST POINT WINS
-            </span>
-          </div>
-          <ShootingCompetition />
-        </section>
-      )}
+
 
       {/* ── Info / Description Section ────────────────── */}
       <section className="bg-on-background text-surface">

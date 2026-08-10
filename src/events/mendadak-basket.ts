@@ -14,31 +14,31 @@ const mendadakBasket: EventData = {
     'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
   rulesUrl: 'https://docs.google.com/presentation/d/1sI8zh1lr8KacyMcOs3DK3BgtxpKIcVi3hDnIzF5Q53g/edit?usp=sharing',
   bracketType: 'group-16',
-  bracketTitle: 'TOURNAMENT 3 ON 3 MALE',
+  bracketTitle: 'BASKET TOURNAMENT',
 
   groupBracket: {
-    title: 'TOURNAMENT 3 ON 3 MALE',
+    title: 'BASKET',
     subtitle: '8 TEAMS',
     // Group A — left half (4 teams, 2 per sub-group)
     leftTop: {
       label: 'GROUP A',
-      teams: [team('Team Name'), team('Team Name')],
+      teams: [team('SETJEN'), team('DIT P2')],
       winner: team('Winner Q1'),
     },
     leftBottom: {
       label: 'GROUP A',
-      teams: [team('Team Name'), team('Team Name')],
+      teams: [team('KESPRIMKOM'), team('FARMALKES')],
       winner: team('Winner Q1'),
     },
     // Group B — right half (4 teams, 2 per sub-group)
     rightTop: {
       label: 'GROUP B',
-      teams: [team('Team Name'), team('Team Name')],
+      teams: [team('BKPK'), team('ITJEN')],
       winner: team('Winner Q1'),
     },
     rightBottom: {
       label: 'GROUP B',
-      teams: [team('Team Name'), team('Team Name')],
+      teams: [team('SDMK'), team('KESLAN')],
       winner: team('Winner Q1'),
     },
   },
@@ -55,7 +55,7 @@ const mendadakBasket: EventData = {
   infoTitle: 'MENDADAK BASKET',
   infoText:
     'Permainan basket yang mengandalkan kecepatan, akurasi, dan strategi tim. Siapa yang paling cepat mencetak poin akan menjadi juara.',
-  infoPoints: ['Format 3 on 3 Male', 'Shooting Competition'],
+  infoPoints: ['Format 3 on 3 Male'],
 };
 
 export default mendadakBasket;
