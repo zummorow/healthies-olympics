@@ -3,7 +3,8 @@
 // ============================================================
 
 export type TeamSlot = {
-  name: string;       // Nama tim
+  name: string;       // Nama tim / pasangan
+  unit?: string;      // Unit Utama (opsional)
   score?: string;     // Skor / waktu (opsional)
   isWinner?: boolean; // Apakah ini pemenang matchup?
 };

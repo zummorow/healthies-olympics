@@ -1,10 +1,40 @@
-import type { EventData } from './types';
+import type { TeamSlot, EventData } from './types';
 
 // ============================================================
 // PADEL — Discipline 03
 // Edit bagian ini untuk update bracket dan info event.
 // ============================================================
 
+// =========================================================================
+// CARA UPDATE BRACKET — ada 4 level yang bisa diupdate:
+//
+// LEVEL 0 — Nama Tim, Unit Utama & Skor:
+//   • team('NAMA_TIM')                           → tim biasa
+//   • team('NAMA_TIM', 'UNIT UTAMA')             → tim + unit
+//   • team('NAMA_TIM', 'UNIT UTAMA', '6-4')      → tim + unit + skor
+//   • winner('NAMA_TIM', 'UNIT', '6-4')          → tim MENANG (highlight emas)
+//   Contoh: teams: [ winner('Akbar x Putri', 'Setjen', '6-4'), team('Reza x Miranti', 'Itjen', '4-6') ]
+//
+// LEVEL 1 — Pemenang Q1 (hasil 2v2 dalam 1 sub-grup):
+//   Tandai tim yang menang dengan winner() di level 0.
+//   Pemenang otomatis naik ke slot Winner.
+//
+// LEVEL 2 — Pemenang Q2 (hasil 2 sub-grup → semi-final):
+//   Tambahkan field `winner` pada sub-grup (leftTop / leftBottom / dst).
+//   Contoh: winner: winner('Akbar x Putri', 'Setjen')
+//
+// LEVEL 3 — Finalist (tampil di slot paling tengah, dekat lingkaran VS):
+//   Isi field `leftWinner` dan `rightWinner` di bawah groupBracket.
+//   Contoh: leftWinner: winner('Akbar x Putri', 'Setjen'), rightWinner: team('Tim B', 'BKPK')
+// =========================================================================
+
+// ── Helper: tim tanpa penanda pemenang ────────────────────────
+export const team = (name: string, unit?: string, score?: string): TeamSlot => ({ name, unit, score });
+
+// ── Helper: tim yang menang (highlight emas) ──────────────────
+export const winner = (name: string, unit?: string, score?: string): TeamSlot => ({ name, unit, score, isWinner: true });
+
+// ── DATA BRACKET ──────────────────────────────────────────────
 const padel: EventData = {
   discipline: '03',
   title: 'TERPADEL DAY',
@@ -13,61 +43,58 @@ const padel: EventData = {
   bracketType: 'group-16',
   bracketTitle: '16-TEAM PADEL CUP',
 
-  // =========================================================================
-  // CARA UPDATE BRACKET — ada 4 level yang bisa diupdate:
-  //
-  // LEVEL 0 — Nama Tim (8 peserta per sisi):
-  //   Ganti 'Team X' dengan nama tim asli.
-  //   Contoh: { name: 'Setjen' }
-  //
-  // LEVEL 1 — Pemenang Q1 (hasil dari 2 tim vs 2 tim dalam 1 sub-grup):
-  //   Tambahkan `isWinner: true` pada tim yang menang di level 0.
-  //   Tim itu akan otomatis muncul di slot "Winner" level 1.
-  //   Contoh: { name: 'Setjen', isWinner: true }
-  //
-  // LEVEL 2 — Pemenang Q2 (hasil 2 sub-grup, winner naik ke semi-final):
-  //   Tambahkan field `winner` pada sub-grup (leftTop / leftBottom / dst).
-  //   Contoh: leftTop: { label: 'GROUP A', teams: [...], winner: { name: 'Setjen' } }
-  //
-  // LEVEL 3 — Finalist (tampil di slot paling tengah, dekat lingkaran VS):
-  //   Isi field `leftWinner` (sisi kiri) dan `rightWinner` (sisi kanan)
-  //   di bawah groupBracket.
-  //   Contoh: leftWinner: { name: 'Setjen' }, rightWinner: { name: 'Itjen' }
-  // =========================================================================
   groupBracket: {
     title: 'PADEL CUP',
     subtitle: '16 TEAMS TOURNAMENT',
+
+    // ── Group A — sisi kiri, sub-grup atas ────────────────────
     leftTop: {
       label: 'GROUP A',
       teams: [
-        { name: 'Team 1' }, { name: 'Team 2' },
-        { name: 'Team 3' }, { name: 'Team 4' }
-      ]
+        team('Akbar x Putri', 'ITJEN'),
+        team('Reza x Miranti', 'FARMALKES'),
+        team('Angga x Farah', 'SDMK'),
+        team('Christian x Melati', 'P2'),
+      ],
     },
+
+    // ── Group C — sisi kiri, sub-grup bawah ──────────────────
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        { name: 'Team 5' }, { name: 'Team 6' },
-        { name: 'Team 7' }, { name: 'Team 8' }
-      ]
+        team('Faizal x Ratna', 'KESLAN'),
+        team('Mely x Rheza', 'BKPK'),
+        team('Rangga x Prima', 'SEKJEN'),
+        team('Febby x Marti', 'KESPRIMKOM'),
+      ],
     },
+
+    // ── Group B — sisi kanan, sub-grup atas ──────────────────
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'Team 9' }, { name: 'Team 10' },
-        { name: 'Team 11' }, { name: 'Team 12' }
-      ]
+        team('Aldo x Icha', 'SEKJEN'),
+        team('Rivania x Novauzi ', 'BKPK'),
+        team('Yosua dan Rizka', 'FARMALKES'),
+        team('Raihan dan Adis ', 'P2'),
+      ],
     },
+
+    // ── Group D — sisi kanan, sub-grup bawah ─────────────────
     rightBottom: {
       label: 'GROUP D',
       teams: [
-        { name: 'Team 13' }, { name: 'Team 14' },
-        { name: 'Team 15' }, { name: 'Team 16' }
-      ]
+        team('Muflih dan Unik', 'ITJEN'),
+        team('Andreas dan Desy', 'KESPRIMKOM'),
+        team('Bob Samuel xRinda', 'KESLAN'),
+        team('Bayu x Annisa', 'SDMK'),
+      ],
     },
-    // LEVEL 3: Finalist — tim yang maju ke final dari tiap sisi
-    // leftWinner: { name: 'Nama Tim Kiri' },
-    // rightWinner: { name: 'Nama Tim Kanan' },
+
+    // ── LEVEL 3: Finalist — tim yang maju ke babak akhir ──────
+    // Tandai dengan winner() jika sudah ada juara keseluruhan.
+    // leftWinner: winner('Nama Tim Kiri', 'Unit'),
+    // rightWinner: team('Nama Tim Kanan', 'Unit'),
   },
 
   leftBracket: [],
@@ -87,3 +114,4 @@ const padel: EventData = {
 };
 
 export default padel;
+

@@ -8,7 +8,7 @@ const LINE = '#4a4d4f';
 const SLOT_CLIP_L = 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)';
 const SLOT_CLIP_R = 'polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%)';
 
-const SLOT_H = 56; // Dinaikkan dari 44 → 56 untuk menampung nama + skor
+const SLOT_H = 74; // Dinaikkan untuk menampung nama + unit + skor
 const SLOT_GAP = 12;
 const D = SLOT_H + SLOT_GAP;
 const CONNECTOR_W = 36;
@@ -20,7 +20,7 @@ const Y2 = Array.from({ length: 2 }, (_, i) => (Y1[i * 2] + Y1[i * 2 + 1]) / 2);
 const Y3 = (Y2[0] + Y2[1]) / 2;
 
 // ── Team slot box ─────────────────────────────────────────────
-// Menampilkan nama tim (dan skor opsional di bawahnya jika team.score diisi)
+// Menampilkan nama tim, unit utama, dan skor (opsional)
 function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'right'; y: number }) {
   const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
   const isRight = align === 'right';
@@ -33,20 +33,30 @@ function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'righ
       {!isRight && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
       {isRight && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
 
-      {/* Konten: nama tim + skor (jika ada) */}
-      <div className={`relative z-10 px-5 w-full flex flex-col gap-[2px] ${isRight ? 'items-end' : 'items-start'}`}>
+      {/* Konten: nama tim + unit + skor */}
+      <div className={`relative z-10 px-5 w-full flex flex-col gap-[1px] ${isRight ? 'items-end' : 'items-start'}`}>
         {/* Nama tim */}
         <span
-          className={`text-[10px] uppercase tracking-widest font-semibold truncate w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${isRight ? 'text-right' : ''}`}
-          style={{ fontFamily: 'inherit', letterSpacing: '0.12em' }}
+          className={`text-[12px] uppercase tracking-widest font-semibold truncate w-full leading-tight ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${isRight ? 'text-right' : ''}`}
+          style={{ letterSpacing: '0.12em' }}
         >
           {team.name}
         </span>
 
-        {/* Skor perolehan poin — hanya tampil jika field score diisi */}
+        {/* Unit Utama — hanya tampil jika field unit diisi */}
+        {team.unit && (
+          <span
+            className={`text-[10px] uppercase tracking-wider truncate w-full leading-tight ${team.isWinner ? 'text-[#f3d898]/55' : 'text-white/35'} ${isRight ? 'text-right' : ''}`}
+            style={{ letterSpacing: '0.08em' }}
+          >
+            {team.unit}
+          </span>
+        )}
+
+        {/* Skor perolehan — hanya tampil jika field score diisi */}
         {team.score !== undefined && (
           <span
-            className={`text-[9px] font-mono tracking-widest ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'} ${isRight ? 'text-right' : ''}`}
+            className={`text-[11px] font-mono tracking-widest ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'} ${isRight ? 'text-right' : ''}`}
             style={{ letterSpacing: '0.1em' }}
           >
             {team.score}
@@ -84,12 +94,34 @@ function WinnerSlotBox({
       <div className="absolute inset-0" style={{ background: isGold ? '#2e2d20' : '#252729', borderTop: `1px solid ${GOLD}40`, borderBottom: `1px solid ${GOLD}40` }} />
       {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
       {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
-      <span
-        className={`relative z-10 px-4 text-[10px] uppercase tracking-widest w-full truncate ${isGold ? 'text-[#f3d898]/90 font-semibold' : 'text-white/50 italic'} ${align === 'right' ? 'text-right' : ''}`}
-        style={{ letterSpacing: '0.1em' }}
-      >
-        {hasName ? team!.name : placeholder}
-      </span>
+      <div className={`relative z-10 px-4 w-full flex flex-col gap-[1px] ${align === 'right' ? 'items-end' : 'items-start'}`}>
+        {/* Nama tim atau placeholder */}
+        <span
+          className={`text-[12px] uppercase tracking-widest truncate w-full leading-tight ${isGold ? 'text-[#f3d898]/90 font-semibold' : 'text-white/50 italic'} ${align === 'right' ? 'text-right' : ''}`}
+          style={{ letterSpacing: '0.1em' }}
+        >
+          {hasName ? team!.name : placeholder}
+        </span>
+
+        {/* Unit Utama — hanya tampil jika field unit diisi */}
+        {hasName && team?.unit && (
+          <span
+            className={`text-[10px] uppercase tracking-wider truncate w-full leading-tight ${isGold ? 'text-[#f3d898]/50' : 'text-white/30'} ${align === 'right' ? 'text-right' : ''}`}
+            style={{ letterSpacing: '0.07em' }}
+          >
+            {team.unit}
+          </span>
+        )}
+
+        {/* Skor — hanya tampil jika field score diisi */}
+        {hasName && team?.score && (
+          <span
+            className={`text-[11px] font-mono ${isGold ? 'text-[#f3d898]/60' : 'text-white/30'} ${align === 'right' ? 'text-right' : ''}`}
+          >
+            {team.score}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

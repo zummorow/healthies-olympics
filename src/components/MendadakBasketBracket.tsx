@@ -7,7 +7,7 @@ const LINE = '#4a4d4f';
 const SLOT_CLIP_L = 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)';
 const SLOT_CLIP_R = 'polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%)';
 
-const SLOT_H = 56;
+const SLOT_H = 60;
 const SLOT_GAP = 10;
 const GROUP_GAP = 32;
 const GROUP_H = 2 * SLOT_H + SLOT_GAP;
@@ -29,11 +29,11 @@ function TeamSlotBox({ team, align }: { team: TeamSlot; align: 'left' | 'right' 
       {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
       {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
       <div className={`relative z-10 px-5 flex flex-col w-full ${align === 'right' ? 'items-end' : 'items-start'}`}>
-        <span className={`text-xs uppercase tracking-widest font-semibold truncate max-w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'}`}>
+        <span className={`text-[14px] uppercase tracking-widest font-semibold truncate max-w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'}`}>
           {team.name}
         </span>
         {team.score && (
-          <span className={`text-[10px] tabular-nums mt-0.5 ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'}`}>
+          <span className={`text-[12px] tabular-nums mt-0.5 ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'}`}>
             {team.score}
           </span>
         )}
@@ -62,11 +62,11 @@ function WinnerSlotBox({
       {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
       {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
       <div className={`relative z-10 px-5 flex flex-col w-full ${align === 'right' ? 'items-end' : 'items-start'}`}>
-        <span className={`text-xs uppercase tracking-widest truncate max-w-full ${isGold ? 'text-[#f3d898]/90 font-semibold' : 'text-white/50 italic'}`}>
+        <span className={`text-[14px] uppercase tracking-widest truncate max-w-full ${isGold ? 'text-[#f3d898]/90 font-semibold' : 'text-white/50 italic'}`}>
           {hasName ? team.name : placeholder}
         </span>
         {hasName && team?.score && (
-          <span className={`text-[10px] tabular-nums mt-0.5 ${isGold ? 'text-[#f3d898]/60' : 'text-white/30'}`}>
+          <span className={`text-[12px] tabular-nums mt-0.5 ${isGold ? 'text-[#f3d898]/60' : 'text-white/30'}`}>
             {team.score}
           </span>
         )}
