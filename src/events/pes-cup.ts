@@ -9,7 +9,7 @@ const pesCup: EventData = {
   discipline: '11',
   title: 'PLAYSTATION',
   description: 'Turnamen e-sports EA SPORTS FC 26 antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul skor akan melaju ke babak berikutnya.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1BT9YQrV4inw7HlYcdWKDkGznaa6E_AWm/view?usp=drive_link',
   bracketType: 'group-16',
   bracketTitle: '16-TEAM PLAYSTATION CUP',
 

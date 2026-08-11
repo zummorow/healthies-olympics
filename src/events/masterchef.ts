@@ -45,7 +45,7 @@ const masterchef: EventData = {
   discipline: '14',
   title: 'SI JAGO MASAK',
   description: 'Lomba memasak kreatif antar unit kerja Kemenkes.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1GH3ycDOmO4rUNID7oqyWSHSsXG4UPTi_/view?usp=drive_link',
   bracketType: 'point-table',   // ← pakai MasterchefLeaderboard
   bracketTitle: 'SI JAGO MASAK CUP',
 

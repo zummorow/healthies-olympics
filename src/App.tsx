@@ -282,7 +282,7 @@ function App() {
 
                 {/* Schedule Item — Calendar Event (klik untuk buka link) */}
                 <a
-                  href="https://drive.google.com/file/d/1DQtfIiVVVSAjzO6-GmfnRLCQGtNkjGf3/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1MMt94W127eXjQ9XN-y3pKvRbfPA-Np6s/view?usp=drive_link"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-8 p-6 bg-surface-container-low hover:bg-surface-container-high border-b-2 border-on-surface group transition-colors cursor-pointer"

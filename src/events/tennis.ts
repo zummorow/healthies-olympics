@@ -9,7 +9,7 @@ const tennis: EventData = {
   discipline: '04',
   title: 'TENNIS',
   description: 'Pertandingan tenis lapangan antar pegawai Kemenkes.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1Ir6WOCINmUmt-Yfe2c51Yzx_iy3bc6By/view?usp=drive_link',
   bracketType: 'group-16',
   bracketTitle: '8-TEAM TENNIS CUP',
 

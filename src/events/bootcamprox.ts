@@ -137,7 +137,7 @@ const bootcamprox: EventData = {
   discipline: '09',
   title: 'FITROX',
   description: 'Bootcamp kebugaran dan fisik intensif. Pemenang ditentukan dari perolehan waktu tercepat.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1xHcW9AgVRv0QkvNGyKjapmLmqvz0BYVp/view?usp=drive_link',
   bracketType: 'leaderboard',
   bracketTitle: 'BOOTCAMPROX TIME LEADERBOARD',
   bootcamproxTeams,

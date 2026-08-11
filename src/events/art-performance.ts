@@ -30,14 +30,14 @@ export const artPerformanceTeams: MasterchefTeam[] = [
   // Format: { name: 'Nama Tim', unit: 'Unit Utama', point: <angka poin> }
   // Urutan di sini tidak berpengaruh — tabel akan auto-sort.
 
-  { name: 'Tim 1', unit: 'Sekretariat Jenderal',                           point: 0 },
-  { name: 'Tim 2', unit: 'Inspektorat Jenderal',                           point: 0 },
+  { name: 'Tim 1', unit: 'Sekretariat Jenderal', point: 0 },
+  { name: 'Tim 2', unit: 'Inspektorat Jenderal', point: 0 },
   { name: 'Tim 3', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', point: 0 },
-  { name: 'Tim 4', unit: 'Direktorat Jenderal Kesehatan Lanjutan',         point: 0 },
-  { name: 'Tim 5', unit: 'Direktorat Jenderal Penanggulangan Penyakit',    point: 0 },
+  { name: 'Tim 4', unit: 'Direktorat Jenderal Kesehatan Lanjutan', point: 0 },
+  { name: 'Tim 5', unit: 'Direktorat Jenderal Penanggulangan Penyakit', point: 0 },
   { name: 'Tim 6', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', point: 0 },
-  { name: 'Tim 7', unit: 'Direktorat Jenderal SDM Kesehatan',              point: 0 },
-  { name: 'Tim 8', unit: 'Badan Kebijakan Pembangunan Kesehatan',          point: 0 },
+  { name: 'Tim 7', unit: 'Direktorat Jenderal SDM Kesehatan', point: 0 },
+  { name: 'Tim 8', unit: 'Badan Kebijakan Pembangunan Kesehatan', point: 0 },
 ];
 
 // ── EVENT DATA (metadata & info section) ──────────────────────
@@ -45,7 +45,7 @@ const artPerformance: EventData = {
   discipline: '08',
   title: 'ART PERFORMANCE',
   description: 'Pertunjukan seni budaya antar unit kerja.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1YpdxaGPTfJ-WdG-4o9-AcC31syKCEOO1/view?usp=drive_link',
   bracketType: 'point-table',   // ← pakai MasterchefLeaderboard (reuse)
   bracketTitle: 'ART PERFORMANCE COMPETITION',
 

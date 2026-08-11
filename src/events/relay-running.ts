@@ -56,7 +56,7 @@ const relayRunning: EventData = {
   title: 'RELAY RUNNING',
   description:
     'Kompetisi lari estafet antar unit kerja yang menguji kecepatan, stamina, dan kerja sama tim dalam satu lintasan.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1IThfXdNs-s1-9Q-V5Nvv5-ByPMl1VvM1/view?usp=drive_link',
   bracketType: 'time-table',    // ← pakai RelayRunningLeaderboard
   bracketTitle: '16-TEAM RELAY SPRINT',
 

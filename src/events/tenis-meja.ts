@@ -9,7 +9,7 @@ const tenisMeja: EventData = {
   discipline: '01',
   title: 'TENIS MEJA',
   description: 'Pertandingan tenis meja antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul 3 set akan melaju ke babak berikutnya.',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/1fZK1m72-Mi_IE0NdUVhaSzkvIHr_-Cup/view?usp=drive_link',
   bracketType: 'group-16',
   bracketTitle: '16-TEAM TENIS MEJA CUP',
 
@@ -83,7 +83,7 @@ const tenisMeja: EventData = {
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'Team 9',  score: '-' },  // ← Ganti nama & isi skor
+        { name: 'Team 9', score: '-' },  // ← Ganti nama & isi skor
         { name: 'Team 10', score: '-' },  // ← Ganti nama & isi skor
         { name: 'Team 11', score: '-' },  // ← Ganti nama & isi skor
         { name: 'Team 12', score: '-' },  // ← Ganti nama & isi skor

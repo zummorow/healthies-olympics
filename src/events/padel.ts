@@ -9,7 +9,7 @@ const padel: EventData = {
   discipline: '03',
   title: 'TERPADEL DAY',
   description: 'Turnamen Healthies Olympics pertama di cabang olahraga padel',
-  rulesUrl: '#',
+  rulesUrl: 'https://drive.google.com/file/d/17HFZ_-qo_vCAFPqN3y9BuRRrUfVkroNy/view?usp=drive_link',
   bracketType: 'group-16',
   bracketTitle: '16-TEAM PADEL CUP',
 
