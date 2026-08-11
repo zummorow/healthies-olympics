@@ -1,4 +1,4 @@
-﻿import type { GroupBracketData, TeamSlot } from '../events/types';
+import type { GroupBracketData, TeamSlot } from '../events/types';
 
 const GOLD = '#f3d898';
 const DARK = '#1a1c1d';
@@ -7,7 +7,7 @@ const LINE = '#4a4d4f';
 const SLOT_CLIP_L = 'polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)';
 const SLOT_CLIP_R = 'polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%)';
 
-const SLOT_H = 44;
+const SLOT_H = 56;
 const SLOT_GAP = 10;
 const GROUP_GAP = 32;
 const GROUP_H = 2 * SLOT_H + SLOT_GAP;
@@ -28,23 +28,49 @@ function TeamSlotBox({ team, align }: { team: TeamSlot; align: 'left' | 'right' 
       <div className="absolute inset-0" style={{ background: '#2a2d2f', borderTop: `1px solid ${GOLD}30`, borderBottom: `1px solid ${GOLD}30` }} />
       {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
       {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
-      <span className={`relative z-10 px-5 text-xs uppercase tracking-widest font-semibold truncate w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${align === 'right' ? 'text-right' : ''}`}>
-        {team.name}
-      </span>
+      <div className={`relative z-10 px-5 flex flex-col w-full ${align === 'right' ? 'items-end' : 'items-start'}`}>
+        <span className={`text-xs uppercase tracking-widest font-semibold truncate max-w-full ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'}`}>
+          {team.name}
+        </span>
+        {team.score && (
+          <span className={`text-[10px] tabular-nums mt-0.5 ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'}`}>
+            {team.score}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
-function WinnerSlotBox({ label, align, highlight }: { label: string; align: 'left' | 'right'; highlight?: boolean }) {
+function WinnerSlotBox({
+  team,
+  placeholder,
+  align,
+  highlight,
+}: {
+  team?: TeamSlot;
+  placeholder: string;
+  align: 'left' | 'right';
+  highlight?: boolean;
+}) {
   const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
+  const hasName = team && team.name;
+  const isGold = highlight || (hasName && team.isWinner);
   return (
     <div className="relative flex items-center" style={{ clipPath: clip, width: 200, height: SLOT_H }}>
-      <div className="absolute inset-0" style={{ background: highlight ? '#2e2d20' : '#252729', borderTop: `1px solid ${GOLD}40`, borderBottom: `1px solid ${GOLD}40` }} />
+      <div className="absolute inset-0" style={{ background: isGold ? '#2e2d20' : '#252729', borderTop: `1px solid ${GOLD}40`, borderBottom: `1px solid ${GOLD}40` }} />
       {align === 'left' && <div className="absolute left-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
       {align === 'right' && <div className="absolute right-0 top-0 bottom-0 w-[2px]" style={{ background: GOLD + '50' }} />}
-      <span className={`relative z-10 px-5 text-xs uppercase tracking-widest italic w-full ${highlight ? 'text-[#f3d898]/90' : 'text-white/50'} ${align === 'right' ? 'text-right' : ''}`}>
-        {label}
-      </span>
+      <div className={`relative z-10 px-5 flex flex-col w-full ${align === 'right' ? 'items-end' : 'items-start'}`}>
+        <span className={`text-xs uppercase tracking-widest truncate max-w-full ${isGold ? 'text-[#f3d898]/90 font-semibold' : 'text-white/50 italic'}`}>
+          {hasName ? team.name : placeholder}
+        </span>
+        {hasName && team?.score && (
+          <span className={`text-[10px] tabular-nums mt-0.5 ${isGold ? 'text-[#f3d898]/60' : 'text-white/30'}`}>
+            {team.score}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -93,9 +119,11 @@ interface HalfProps {
   side: 'left' | 'right';
   groupLabel: string;
   teams: TeamSlot[];
+  q1Winners?: (TeamSlot | undefined)[];
+  q2Winner?: TeamSlot;
 }
 
-function BracketHalf({ side, groupLabel, teams }: HalfProps) {
+function BracketHalf({ side, groupLabel, teams, q1Winners, q2Winner }: HalfProps) {
   const align = side;
   const isRight = side === 'right';
   const labelClip = isRight
@@ -123,16 +151,16 @@ function BracketHalf({ side, groupLabel, teams }: HalfProps) {
             <div className="flex items-center">
               <TeamPair pairTeams={topTeams} />
               <LeftConnector1 />
-              <WinnerSlotBox label="Winner Q1" align="left" />
+              <WinnerSlotBox team={q1Winners?.[0]} placeholder="Winner Q1" align="left" />
             </div>
             <div className="flex items-center">
               <TeamPair pairTeams={botTeams} />
               <LeftConnector1 />
-              <WinnerSlotBox label="Winner Q1" align="left" />
+              <WinnerSlotBox team={q1Winners?.[1]} placeholder="Winner Q1" align="left" />
             </div>
           </div>
           <LeftConnector2 />
-          <WinnerSlotBox label="Winner Q2" align="left" highlight />
+          <WinnerSlotBox team={q2Winner} placeholder="Winner Q2" align="left" highlight />
         </div>
       </div>
     );
@@ -144,16 +172,16 @@ function BracketHalf({ side, groupLabel, teams }: HalfProps) {
           {groupLabel}
         </div>
         <div className="flex items-center">
-          <WinnerSlotBox label="Winner Q2" align="right" highlight />
+          <WinnerSlotBox team={q2Winner} placeholder="Winner Q2" align="right" highlight />
           <RightConnector2 />
           <div className="flex flex-col" style={{ gap: GROUP_GAP }}>
             <div className="flex items-center">
-              <WinnerSlotBox label="Winner Q1" align="right" />
+              <WinnerSlotBox team={q1Winners?.[0]} placeholder="Winner Q1" align="right" />
               <RightConnector1 />
               <TeamPair pairTeams={topTeams} />
             </div>
             <div className="flex items-center">
-              <WinnerSlotBox label="Winner Q1" align="right" />
+              <WinnerSlotBox team={q1Winners?.[1]} placeholder="Winner Q1" align="right" />
               <RightConnector1 />
               <TeamPair pairTeams={botTeams} />
             </div>
@@ -196,9 +224,27 @@ export default function MendadakBasketBracket({ data }: { data: GroupBracketData
       </div>
       <div className="overflow-x-auto pb-10 px-4 md:px-8">
         <div className="mx-auto flex items-center justify-center" style={{ minWidth: 800, gap: 0 }}>
-          <BracketHalf side="left" groupLabel={data.leftTop.label} teams={[...data.leftTop.teams, ...data.leftBottom.teams]} />
+          <BracketHalf
+            side="left"
+            groupLabel={data.leftTop.label}
+            teams={[...data.leftTop.teams, ...data.leftBottom.teams]}
+            q1Winners={[
+              data.leftTop.winner,
+              data.leftBottom.winner,
+            ]}
+            q2Winner={data.leftWinner}
+          />
           <CenterColumn />
-          <BracketHalf side="right" groupLabel={data.rightTop.label} teams={[...data.rightTop.teams, ...data.rightBottom.teams]} />
+          <BracketHalf
+            side="right"
+            groupLabel={data.rightTop.label}
+            teams={[...data.rightTop.teams, ...data.rightBottom.teams]}
+            q1Winners={[
+              data.rightTop.winner,
+              data.rightBottom.winner,
+            ]}
+            q2Winner={data.rightWinner}
+          />
         </div>
       </div>
     </div>
