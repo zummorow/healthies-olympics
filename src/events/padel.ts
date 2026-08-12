@@ -68,7 +68,7 @@ const padel: EventData = {
         team('Rangga x Prima', 'SEKJEN'),
         winner('Febby x Marti', 'KESPRIMKOM'),
       ],
-      winner: winner('Febby x Marti', 'KESPRIMKOM')
+      winner: winner('Febby x Marti', 'KESPRIMKOM', '3rd')
     },
 
     // ── Group B — sisi kanan, sub-grup atas ──────────────────
