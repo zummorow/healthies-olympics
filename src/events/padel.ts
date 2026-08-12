@@ -52,8 +52,8 @@ const padel: EventData = {
       label: 'GROUP A',
       teams: [
         team('Akbar x Putri', 'ITJEN'),
-        team('Reza x Miranti', 'FARMALKES'),
-        team('Angga x Farah', 'SDMK'),
+        winner('Reza x Miranti', 'FARMALKES'),
+        winner('Angga x Farah', 'SDMK'),
         team('Christian x Melati', 'P2'),
       ],
     },
@@ -62,10 +62,10 @@ const padel: EventData = {
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        team('Faizal x Ratna', 'KESLAN'),
-        team('Mely x Rheza', 'BKPK'),
+        winner('Faizal x Ratna', 'KESLAN', '3'),
+        team('Mely x Rheza', 'BKPK', '0'),
         team('Rangga x Prima', 'SEKJEN'),
-        team('Febby x Marti', 'KESPRIMKOM'),
+        winner('Febby x Marti', 'KESPRIMKOM'),
       ],
     },
 
@@ -73,9 +73,9 @@ const padel: EventData = {
     rightTop: {
       label: 'GROUP B',
       teams: [
-        team('Aldo x Icha', 'SEKJEN'),
+        winner('Aldo x Icha', 'SEKJEN'),
         team('Rivania x Novauzi ', 'BKPK'),
-        team('Yosua dan Rizka', 'FARMALKES'),
+        winner('Yosua dan Rizka', 'FARMALKES'),
         team('Raihan dan Adis ', 'P2'),
       ],
     },
@@ -85,9 +85,9 @@ const padel: EventData = {
       label: 'GROUP D',
       teams: [
         team('Muflih dan Unik', 'ITJEN'),
-        team('Andreas dan Desy', 'KESPRIMKOM'),
+        winner('Andreas dan Desy', 'KESPRIMKOM'),
         team('Bob Samuel xRinda', 'KESLAN'),
-        team('Bayu x Annisa', 'SDMK'),
+        winner('Bayu x Annisa', 'SDMK'),
       ],
     },
 
