@@ -63,8 +63,8 @@ const padel: EventData = {
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        winner('Faizal x Ratna', 'KESLAN', '3'),
-        team('Mely x Rheza', 'BKPK', '0'),
+        winner('Faizal x Ratna', 'KESLAN'),
+        team('Mely x Rheza', 'BKPK'),
         team('Rangga x Prima', 'SEKJEN'),
         winner('Febby x Marti', 'KESPRIMKOM'),
       ],
