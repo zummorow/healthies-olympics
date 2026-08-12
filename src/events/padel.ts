@@ -95,6 +95,8 @@ const padel: EventData = {
       winner: winner('Bayu x Annisa', 'SDMK')
     },
 
+    leftWinner: team('Yosua dan Rizka', 'FARMALKES'),
+    rightWinner: team('Bayu x Annisa', 'SDMK')
     // ── LEVEL 3: Finalist — tim yang maju ke babak akhir ──────
     // Tandai dengan winner() jika sudah ada juara keseluruhan.
     // leftWinner: winner('Nama Tim Kiri', 'Unit'),
