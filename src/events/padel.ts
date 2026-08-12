@@ -68,7 +68,7 @@ const padel: EventData = {
         team('Rangga x Prima', 'SEKJEN'),
         winner('Febby x Marti', 'KESPRIMKOM'),
       ],
-      winner: winner('Febby x Marti', 'KESPRIMKOM')
+      winner: winner('Bayu x Annisa', 'SDMK')
     },
 
     // ── Group B — sisi kanan, sub-grup atas ──────────────────
@@ -92,7 +92,7 @@ const padel: EventData = {
         team('Bob Samuel xRinda', 'KESLAN'),
         winner('Bayu x Annisa', 'SDMK'),
       ],
-      winner: winner('Bayu x Annisa', 'SDMK')
+      winner: winner('Febby x Marti', 'KESPRIMKOM')
     },
 
     // ── LEVEL 3: Finalist — tim yang maju ke babak akhir ──────
