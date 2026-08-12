@@ -32,22 +32,13 @@ export const relayTeams: RelayTeam[] = [
   // Format: { teamName: 'Nama Tim', unit: 'Unit Utama', time: 'MM:SS.ms' }
   // Kosongkan time ('') jika hasil belum tersedia.
 
-  { teamName: 'Tim 1', unit: 'Sekretariat Jenderal', time: '' },
-  { teamName: 'Tim 2', unit: 'Sekretariat Jenderal', time: '' },
-  { teamName: 'Tim 3', unit: 'Inspektorat Jenderal', time: '' },
-  { teamName: 'Tim 4', unit: 'Inspektorat Jenderal', time: '' },
-  { teamName: 'Tim 5', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
-  { teamName: 'Tim 6', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '' },
-  { teamName: 'Tim 7', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '' },
-  { teamName: 'Tim 8', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '' },
-  { teamName: 'Tim 9', unit: 'Direktorat Jenderal Penanggulangan Penyakit', time: '' },
-  { teamName: 'Tim 10', unit: 'Direktorat Jenderal Penanggulangan Penyakit', time: '' },
-  { teamName: 'Tim 11', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', time: '' },
-  { teamName: 'Tim 12', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', time: '' },
-  { teamName: 'Tim 13', unit: 'Direktorat Jenderal SDM Kesehatan', time: '' },
-  { teamName: 'Tim 14', unit: 'Direktorat Jenderal SDM Kesehatan', time: '' },
-  { teamName: 'Tim 15', unit: 'Badan Kebijakan Pembangunan Kesehatan', time: '' },
-  { teamName: 'Tim 16', unit: 'Badan Kebijakan Pembangunan Kesehatan', time: '' },
+  { teamName: 'Tim 1', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', time: '07:46:99' },
+  { teamName: 'Tim 2', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '09:14:83' },
+  { teamName: 'Tim 3', unit: 'Sekretariat Jenderal', time: '08:22:88' },
+  { teamName: 'Tim 4', unit: 'Direktorat Jenderal Kesehatan Lanjutan', time: '08:09:70' },
+  { teamName: 'Tim 5', unit: 'Inspektorat Jenderal', time: '08:35:63' },
+  { teamName: 'Tim 6', unit: 'Badan Kebijakan Pembangunan Kesehatan', time: '09:04:17' },
+  { teamName: 'Tim 7', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', time: '08:40:91' },
 ];
 
 // ── EVENT DATA (metadata & info section) ──────────────────────
@@ -58,7 +49,7 @@ const relayRunning: EventData = {
     'Kompetisi lari estafet antar unit kerja yang menguji kecepatan, stamina, dan kerja sama tim dalam satu lintasan.',
   rulesUrl: 'https://drive.google.com/file/d/1IThfXdNs-s1-9Q-V5Nvv5-ByPMl1VvM1/view?usp=drive_link',
   bracketType: 'time-table',    // ← pakai RelayRunningLeaderboard
-  bracketTitle: '16-TEAM RELAY SPRINT',
+  bracketTitle: '7-TEAM RELAY RUNNING',
 
   // Placeholder — tidak digunakan saat bracketType = 'time-table'
   leftBracket: [],
