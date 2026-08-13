@@ -1,44 +1,40 @@
 import type { EventData } from './types';
-import type { MasterchefTeam } from '../components/MasterchefLeaderboard';
+import type { SangJuaraParticipant, SangJuaraWinner } from '../components/SangJuaraStandings';
 
 // ============================================================
 // SANG JUARA SEASON III — Discipline 13
-// Edit bagian SANG JUARA LEADERBOARD DATA di bawah untuk
-// update nama peserta dan perolehan poin.
+// Edit bagian DAFTAR PESERTA dan PEMENANG di bawah.
 // ============================================================
 
 // ============================================================================
-// CARA UPDATE TABEL PEROLEHAN POIN:
+// CARA UPDATE:
 //
-// 1. Ganti field `name` dengan nama peserta / kontingen.
-//    Contoh: name: 'Kontingen Setjen'
+// 1. DAFTAR PESERTA — Ganti `name` dan `unit` pada array sangJuaraParticipants.
+//    Contoh: { name: 'Kontingen Setjen', unit: 'Sekretariat Jenderal' }
 //
-// 2. Ganti field `unit` dengan nama Unit Utama.
-//    Contoh: unit: 'Sekretariat Jenderal'
-//
-// 3. Isi field `point` dengan perolehan poin akumulasi.
-//    Contoh: point: 120
-//    → Jika belum ada hasil, biarkan 0 (akan tampil sebagai "—").
-//
-// Urutan baris TIDAK perlu diurutkan manual — tabel otomatis
-// menampilkan dari poin terbesar ke terkecil.
+// 2. PEMENANG — Isi sangJuaraJuara1 dan sangJuaraJuara2 dengan nama pemenang.
+//    → Jika belum ada pemenang, biarkan undefined.
 // ============================================================================
 
-// ── SANG JUARA LEADERBOARD DATA ──────────────────────────────
-// Edit bagian ini setiap ada update perolehan poin.
-export const sangJuaraTeams: MasterchefTeam[] = [
-  // Format: { name: 'Nama Kontingen', unit: 'Unit Utama', point: <angka poin> }
-  // Urutan di sini tidak berpengaruh — tabel akan auto-sort.
-
-  { name: 'Kontingen 1', unit: 'Sekretariat Jenderal',                           point: 0 },
-  { name: 'Kontingen 2', unit: 'Inspektorat Jenderal',                           point: 0 },
-  { name: 'Kontingen 3', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', point: 0 },
-  { name: 'Kontingen 4', unit: 'Direktorat Jenderal Kesehatan Lanjutan',         point: 0 },
-  { name: 'Kontingen 5', unit: 'Direktorat Jenderal Penanggulangan Penyakit',    point: 0 },
-  { name: 'Kontingen 6', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan', point: 0 },
-  { name: 'Kontingen 7', unit: 'Direktorat Jenderal SDM Kesehatan',              point: 0 },
-  { name: 'Kontingen 8', unit: 'Badan Kebijakan Pembangunan Kesehatan',          point: 0 },
+// ── DAFTAR PESERTA ───────────────────────────────────────────
+export const sangJuaraParticipants: SangJuaraParticipant[] = [
+  { name: 'Kontingen 1', unit: 'Sekretariat Jenderal' },
+  { name: 'Kontingen 2', unit: 'Inspektorat Jenderal' },
+  { name: 'Kontingen 3', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas' },
+  { name: 'Kontingen 4', unit: 'Direktorat Jenderal Kesehatan Lanjutan' },
+  { name: 'Kontingen 5', unit: 'Direktorat Jenderal Penanggulangan Penyakit' },
+  { name: 'Kontingen 6', unit: 'Direktorat Jenderal Farmasi dan Alat Kesehatan' },
+  { name: 'Kontingen 7', unit: 'Direktorat Jenderal SDM Kesehatan' },
+  { name: 'Kontingen 8', unit: 'Badan Kebijakan Pembangunan Kesehatan' },
 ];
+
+// ── PEMENANG ─────────────────────────────────────────────────
+// Isi ketika sudah ada hasil. Biarkan undefined jika belum ada.
+export const sangJuaraJuara1: SangJuaraWinner = { name: 'Kontingen 5', unit: 'Direktorat Jenderal Penanggulangan Penyakit', };
+// Contoh: export const sangJuaraJuara1: SangJuaraWinner = { name: 'Kontingen 1', unit: 'Sekretariat Jenderal' };
+
+export const sangJuaraJuara2: SangJuaraWinner = { name: 'Kontingen 3', unit: 'Direktorat Jenderal Kesehatan Primer Komunitas', };
+// Contoh: export const sangJuaraJuara2: SangJuaraWinner = { name: 'Kontingen 2', unit: 'Inspektorat Jenderal' };
 
 // ── EVENT DATA (metadata & info section) ──────────────────────
 const sangJuara: EventData = {
@@ -46,10 +42,10 @@ const sangJuara: EventData = {
   title: 'SANG JUARA SEASON III',
   description: 'Kompetisi multi-event para juara dari setiap cabang.',
   rulesUrl: '#',
-  bracketType: 'point-table',   // ← pakai MasterchefLeaderboard (reuse)
+  bracketType: 'winner-list',   // ← pakai SangJuaraStandings (list peserta + juara 1 & 2)
   bracketTitle: 'SANG JUARA GRAND STANDINGS',
 
-  // Placeholder — tidak digunakan saat bracketType = 'point-table'
+  // Placeholder — tidak digunakan saat bracketType = 'winner-list'
   leftBracket: [],
   rightBracket: [],
   sf1: { team1: { name: '—' }, team2: { name: '—' } },

@@ -11,6 +11,7 @@ import MenembakLeaderboard from './components/MenembakLeaderboard';
 import RelayRunningLeaderboard from './components/RelayRunningLeaderboard';
 import MasterchefLeaderboard from './components/MasterchefLeaderboard';
 import BadmintonComponent from './components/BadmintonComponent';
+import SangJuaraStandings from './components/SangJuaraStandings';
 
 // ── Import data per event ────────────────────────────────────
 import tenisMeja from './events/tenis-meja';
@@ -25,7 +26,7 @@ import bootcamprox from './events/bootcamprox';
 import menembak, { menembakTeams } from './events/menembak';
 import pesCup from './events/pes-cup';
 import mobileLegend from './events/mobile-legend';
-import sangJuara, { sangJuaraTeams } from './events/sang-juara';
+import sangJuara, { sangJuaraParticipants, sangJuaraJuara1, sangJuaraJuara2 } from './events/sang-juara';
 import masterchef, { masterchefTeams } from './events/masterchef';
 
 // ── Registry: slug → EventData ───────────────────────────────
@@ -245,10 +246,26 @@ export default function EventPage({
               <MenembakLeaderboard teams={menembakTeams} />
             ) : slug === 'masterchef' || slug === 'si-jago-masak' ? (
               <MasterchefLeaderboard teams={masterchefTeams} title="Si Jago Masak" />
-            ) : slug === 'sang-juara' ? (
-              <MasterchefLeaderboard teams={sangJuaraTeams} title="Sang Juara Season III" subtitle="Akumulasi Poin Tertinggi Adalah Pemenang" />
             ) : slug === 'art-performance' ? (
               <MasterchefLeaderboard teams={artPerformanceTeams} title="Art Performance" subtitle="Poin Tertinggi Adalah Pemenang" />
+            ) : null}
+          </>
+        ) : data.bracketType === 'winner-list' ? (
+          <>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-headline-lg text-headline-lg text-on-background uppercase">
+                {data.bracketTitle}
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant border border-outline-variant px-3 py-1">
+                STANDINGS
+              </span>
+            </div>
+            {slug === 'sang-juara' ? (
+              <SangJuaraStandings
+                participants={sangJuaraParticipants}
+                juara1={sangJuaraJuara1}
+                juara2={sangJuaraJuara2}
+              />
             ) : null}
           </>
         ) : data.bracketType === 'time-table' ? (
