@@ -41,31 +41,34 @@ const mobileLegend: EventData = {
     leftTop: {
       label: 'GROUP A',
       teams: [
-        { name: 'Team 1' }, { name: 'Team 2' },
-        { name: 'Team 3' }, { name: 'Team 4' }
+        { name: 'COMET E-SPORT', isWinner: true }, { name: 'OXYMUS' },
+        { name: 'THE PABX', isWinner: true }, { name: 'P2 E-SPORT' }
       ],
-      // winner: { name: 'Team 1', isWinner: true }
+      winner: { name: 'THE PABX', isWinner: true }
     },
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        { name: 'Team 5' }, { name: 'Team 6' },
-        { name: 'Team 7' }, { name: 'Team 8' }
-      ]
+        { name: 'OGAH SAKIT' }, { name: 'BLOODYMOON', isWinner: true },
+        { name: 'NDNO', isWinner: true }, { name: 'P2 JAYA' }
+      ],
+      winner: { name: 'BLOODYMOON', isWinner: true }
     },
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'Team 9' }, { name: 'Team 10' },
-        { name: 'Team 11' }, { name: 'Team 12' }
-      ]
+        { name: 'NST' }, { name: 'THE TITAN CLAUSE', isWinner: true },
+        { name: 'ALL IN E-SPORT' }, { name: 'ALTERNATIVE E-SPORT', isWinner: true }
+      ],
+      winner: { name: 'ALTERNATIVE E-SPORT', isWinner: true }
     },
     rightBottom: {
       label: 'GROUP D',
       teams: [
-        { name: 'Team 13' }, { name: 'Team 14' },
-        { name: 'Team 15' }, { name: 'Team 16' }
-      ]
+        { name: 'GALA SEGUNDA KOMUNITAS' }, { name: 'SINERGI SEHAT', isWinner: true },
+        { name: 'LASKAR TENDER', isWinner: true }, { name: 'GALA PRIMERA KOMUNITAS' }
+      ],
+      winner: { name: 'LASKAR TENDER', isWinner: true }
     },
     // LEVEL 3: Finalist — tim yang maju ke final dari tiap sisi
     //leftWinner: { name: 'Team 1', isWinner: true },
