@@ -24,27 +24,28 @@ const Y3 = (Y2[0] + Y2[1]) / 2;
 function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'right'; y: number }) {
   const clip = align === 'left' ? SLOT_CLIP_L : SLOT_CLIP_R;
   const isRight = align === 'right';
+  const isBye = team.name.toUpperCase() === 'BYE';
   return (
     <div
       className="absolute flex items-center"
-      style={{ clipPath: clip, width: 180, height: SLOT_H, top: y - SLOT_H / 2, ...(isRight ? { right: 0 } : { left: 0 }) }}
+      style={{ clipPath: clip, width: 180, height: SLOT_H, top: y - SLOT_H / 2, ...(isRight ? { right: 0 } : { left: 0 }), opacity: isBye ? 0.35 : 1 }}
     >
-      <div className="absolute inset-0" style={{ background: '#2a2d2f', borderTop: `1px solid ${GOLD}30`, borderBottom: `1px solid ${GOLD}30` }} />
-      {!isRight && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
-      {isRight && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + '99' }} />}
+      <div className="absolute inset-0" style={{ background: isBye ? '#1e2022' : '#2a2d2f', borderTop: `1px solid ${GOLD}${isBye ? '10' : '30'}`, borderBottom: `1px solid ${GOLD}${isBye ? '10' : '30'}` }} />
+      {!isRight && <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + (isBye ? '30' : '99') }} />}
+      {isRight && <div className="absolute right-0 top-0 bottom-0 w-[3px]" style={{ background: GOLD + (isBye ? '30' : '99') }} />}
 
       {/* Konten: nama tim + unit + skor */}
       <div className={`relative z-10 px-5 w-full flex flex-col gap-[1px] ${isRight ? 'items-end' : 'items-start'}`}>
         {/* Nama tim */}
         <span
-          className={`text-[12px] uppercase tracking-widest font-semibold truncate w-full leading-tight ${team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${isRight ? 'text-right' : ''}`}
+          className={`text-[12px] uppercase tracking-widest font-semibold truncate w-full leading-tight ${isBye ? 'text-white/25 italic' : team.isWinner ? 'text-[#f3d898]' : 'text-white/80'} ${isRight ? 'text-right' : ''}`}
           style={{ letterSpacing: '0.12em' }}
         >
           {team.name}
         </span>
 
-        {/* Unit Utama — hanya tampil jika field unit diisi */}
-        {team.unit && (
+        {/* Unit Utama — hanya tampil jika field unit diisi dan bukan BYE */}
+        {!isBye && team.unit && (
           <span
             className={`text-[10px] uppercase tracking-wider truncate w-full leading-tight ${team.isWinner ? 'text-[#f3d898]/55' : 'text-white/35'} ${isRight ? 'text-right' : ''}`}
             style={{ letterSpacing: '0.08em' }}
@@ -53,8 +54,8 @@ function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'righ
           </span>
         )}
 
-        {/* Skor perolehan — hanya tampil jika field score diisi */}
-        {team.score !== undefined && (
+        {/* Skor perolehan — hanya tampil jika field score diisi dan bukan BYE */}
+        {!isBye && team.score !== undefined && (
           <span
             className={`text-[11px] font-mono tracking-widest ${team.isWinner ? 'text-[#f3d898]/70' : 'text-white/40'} ${isRight ? 'text-right' : ''}`}
             style={{ letterSpacing: '0.1em' }}
@@ -66,6 +67,7 @@ function TeamSlotBox({ team, align, y }: { team: TeamSlot; align: 'left' | 'righ
     </div>
   );
 }
+
 
 // ── Winner/Finalist slot box — menampilkan nama tim atau placeholder ──
 function WinnerSlotBox({

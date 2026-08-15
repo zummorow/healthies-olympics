@@ -11,12 +11,14 @@ const tenisMeja: EventData = {
   description: 'Pertandingan tenis meja antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul 3 set akan melaju ke babak berikutnya.',
   rulesUrl: 'https://drive.google.com/file/d/1fZK1m72-Mi_IE0NdUVhaSzkvIHr_-Cup/view?usp=drive_link',
   bracketType: 'group-16',
-  bracketTitle: '16-TEAM TENIS MEJA CUP',
+  bracketTitle: '14-TEAM TENIS MEJA CUP',
 
   // =========================================================================
   // PANDUAN UPDATE BRACKET
   //
-  // Bracket terbagi menjadi 4 grup (GROUP A, B, C, D), masing-masing 4 tim.
+  // Bracket terbagi menjadi 4 grup:
+  //   GROUP A (4 tim), GROUP B (4 tim), GROUP C (3 tim + 1 BYE), GROUP D (3 tim + 1 BYE).
+  //   Total: 14 tim. Sisi kiri 7 tim, sisi kanan 7 tim.
   // Ada 4 level yang perlu diupdate seiring berjalannya turnamen:
   //
   // ── LEVEL 0 — Nama Tim (isi di awal turnamen) ────────────────────────────
@@ -44,7 +46,7 @@ const tenisMeja: EventData = {
 
   groupBracket: {
     title: 'TENIS MEJA',
-    subtitle: '16 TEAMS TOURNAMENT',
+    subtitle: '14 TEAMS TOURNAMENT',
 
     // ── SISI KIRI ─────────────────────────────────────────────────────────
 
@@ -53,27 +55,28 @@ const tenisMeja: EventData = {
     leftTop: {
       label: 'GROUP A',
       teams: [
-        { name: 'Team 1', score: '-' },  // ← Ganti nama & isi skor (contoh: '3 poin')
-        { name: 'Team 2', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 3', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 4', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'BKPK', score: '-' },  // ← Ganti nama & isi skor (contoh: '3 poin')
+        { name: 'ITJEN A', score: '-', isWinner: true },  // ← Ganti nama & isi skor
+        { name: 'P2 B', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'SETJEN A', score: '-', isWinner: true },  // ← Ganti nama & isi skor
       ],
       // Setelah Group A selesai, uncomment baris ini dan isi nama pemenang:
-      // winner: { name: 'Team 1', isWinner: true },
+      winner: { name: 'SETJEN A', isWinner: true },
     },
 
-    // GROUP C — 4 tim paling bawah di sisi kiri
-    // Urutan: Team 5 vs Team 6 (baris 5-6), Team 7 vs Team 8 (baris 7-8)
+    // GROUP C — 3 tim + 1 BYE di sisi kiri bawah
+    // Urutan: Team 5 vs Team 6 (baris 5-6), Team 7 vs BYE (baris 7-8)
+    // Team 7 otomatis maju ke babak berikutnya karena lawan BYE.
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        { name: 'Team 5', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 6', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 7', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 8', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'KESLAN B', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'SDMK B', score: '-', isWinner: true },  // ← Ganti nama & isi skor
+        { name: 'KESPRIMKOM A', score: '-', isWinner: true },  // ← Ganti nama & isi skor (otomatis maju)
+        { name: 'BYE', score: '' },       // ← Slot BYE — jangan diubah
       ],
       // Setelah Group C selesai, uncomment baris ini dan isi nama pemenang:
-      // winner: { name: 'Team 5', isWinner: true },
+      winner: { name: 'KESPRIMKOM A', isWinner: true },
     },
 
     // ── SISI KANAN ────────────────────────────────────────────────────────
@@ -83,34 +86,35 @@ const tenisMeja: EventData = {
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'Team 9', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 10', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 11', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 12', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'P2 A', score: '-', isWinner: true },  // ← Ganti nama & isi skor
+        { name: 'KESLAN A', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'SDMK A', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'KESPRIMKOM B', score: '-', isWinner: true },  // ← Ganti nama & isi skor
       ],
       // Setelah Group B selesai, uncomment baris ini dan isi nama pemenang:
-      // winner: { name: 'Team 9', isWinner: true },
+      winner: { name: 'P2 A', score: '3rd', isWinner: true },
     },
 
-    // GROUP D — 4 tim paling bawah di sisi kanan
-    // Urutan: Team 13 vs Team 14 (baris 5-6), Team 15 vs Team 16 (baris 7-8)
+    // GROUP D — 3 tim + 1 BYE di sisi kanan bawah
+    // Urutan: Team 13 vs Team 14 (baris 5-6), Team 15 vs BYE (baris 7-8)
+    // Team 15 otomatis maju ke babak berikutnya karena lawan BYE.
     rightBottom: {
       label: 'GROUP D',
       teams: [
-        { name: 'Team 13', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 14', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 15', score: '-' },  // ← Ganti nama & isi skor
-        { name: 'Team 16', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'ITJEN B', score: '-' },  // ← Ganti nama & isi skor
+        { name: 'FARMALKES', score: '-', isWinner: true },  // ← Ganti nama & isi skor
+        { name: 'SETJEN B', score: '-', isWinner: true },  // ← Ganti nama & isi skor (otomatis maju)
+        { name: 'BYE', score: '' },       // ← Slot BYE — jangan diubah
       ],
       // Setelah Group D selesai, uncomment baris ini dan isi nama pemenang:
-      // winner: { name: 'Team 13', isWinner: true },
+      winner: { name: 'SETJEN B', isWinner: true },
     },
 
     // ── LEVEL 3: Finalist ──────────────────────────────────────────────────
     // Tim yang lolos ke FINAL dari sisi kiri dan kanan.
     // Uncomment dan isi setelah semifinal selesai:
-    // leftWinner:  { name: 'Nama Tim Kiri',  isWinner: true },
-    // rightWinner: { name: 'Nama Tim Kanan', isWinner: true },
+    leftWinner: { name: 'KESPRIMKOM A', score: '1st', isWinner: true },
+    rightWinner: { name: 'SETJEN B', score: '2nd' },
   },
 
   // Catatan: field-field di bawah ini TIDAK DIGUNAKAN untuk bracketType 'group-16'.
@@ -127,7 +131,7 @@ const tenisMeja: EventData = {
   infoText: 'Pertandingan tenis meja antar unit utama Kemenkes. Format 1 vs 1 knockout — siapa yang unggul 3 set akan melaju ke babak berikutnya.',
   infoPoints: [
     'Format 1 vs 1 (Knockout)',
-    '16 tim dari unit utama Kemenkes',
+    '14 tim dari unit utama Kemenkes',
     'Menang 3 set lolos ke babak berikutnya',
   ],
 };
