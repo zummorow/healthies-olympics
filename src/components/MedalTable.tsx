@@ -29,7 +29,11 @@ export default function MedalTable() {
       let cmp = 0;
       switch (sortKey) {
         case 'rank':
-          cmp = a.id - b.id;
+          // Olympic-style ranking: Gold → Silver → Bronze → alphabetical name
+          cmp = b.gold - a.gold
+            || b.silver - a.silver
+            || b.bronze - a.bronze
+            || a.name.localeCompare(b.name);
           break;
         case 'name':
           cmp = a.name.localeCompare(b.name);
