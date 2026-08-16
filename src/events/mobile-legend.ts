@@ -41,38 +41,38 @@ const mobileLegend: EventData = {
     leftTop: {
       label: 'GROUP A',
       teams: [
-        { name: 'COMET E-SPORT', isWinner: true }, { name: 'OXYMUS' },
-        { name: 'THE PABX', isWinner: true }, { name: 'P2 E-SPORT' }
+        { name: 'COMET E-SPORT', unit: 'BKPK', isWinner: true }, { name: 'OXYMUS', unit: 'ITJEN' },
+        { name: 'THE PABX', unit: 'SDMK', isWinner: true }, { name: 'P2 E-SPORT', unit: 'P2' }
       ],
-      winner: { name: 'THE PABX', isWinner: true }
+      winner: { name: 'THE PABX', unit: 'SDMK', isWinner: true }
     },
     leftBottom: {
       label: 'GROUP C',
       teams: [
-        { name: 'OGAH SAKIT' }, { name: 'BLOODYMOON', isWinner: true },
-        { name: 'NDNO', isWinner: true }, { name: 'P2 JAYA' }
+        { name: 'OGAH SAKIT', unit: 'KESLAN' }, { name: 'BLOODYMOON', unit: 'FARMALKES', isWinner: true },
+        { name: 'NDNO', unit: 'KESLAN', isWinner: true }, { name: 'P2 JAYA', unit: 'P2' }
       ],
-      winner: { name: 'BLOODYMOON', isWinner: true }
+      winner: { name: 'BLOODYMOON', unit: 'FARMALKES', isWinner: true }
     },
     rightTop: {
       label: 'GROUP B',
       teams: [
-        { name: 'NST' }, { name: 'THE TITAN CLAUSE', isWinner: true },
-        { name: 'ALL IN E-SPORT' }, { name: 'ALTERNATIVE E-SPORT', isWinner: true }
+        { name: 'NST', unit: ' SDMK' }, { name: 'THE TITAN CLAUSE', unit: 'FARMALKES', isWinner: true },
+        { name: 'ALL IN E-SPORT', unit: 'ITJEN' }, { name: 'ALTERNATIVE E-SPORT', unit: 'BKPK', isWinner: true }
       ],
-      winner: { name: 'ALTERNATIVE E-SPORT', isWinner: true }
+      winner: { name: 'ALTERNATIVE E-SPORT', unit: 'BKPK', isWinner: true }
     },
     rightBottom: {
       label: 'GROUP D',
       teams: [
-        { name: 'GALA SEGUNDA KOMUNITAS' }, { name: 'SINERGI SEHAT', isWinner: true },
-        { name: 'LASKAR TENDER', isWinner: true }, { name: 'GALA PRIMERA KOMUNITAS' }
+        { name: 'GALA SEGUNDA KOMUNITAS', unit: 'KESPRIMKOM' }, { name: 'SINERGI SEHAT', unit: 'ITJEN', isWinner: true },
+        { name: 'LASKAR TENDER', unit: 'SETJEN', isWinner: true }, { name: 'GALA PRIMERA KOMUNITAS', unit: 'KESPRIMKOM' }
       ],
-      winner: { name: 'LASKAR TENDER', score: '3rd', isWinner: true }
+      winner: { name: 'LASKAR TENDER', unit: 'SETJEN', score: '3rd', isWinner: true }
     },
     // LEVEL 3: Finalist — tim yang maju ke final dari tiap sisi
-    leftWinner: { name: 'THE PABX', score: '2nd' },
-    rightWinner: { name: 'THE ALTERNATIVE E-SPORT', score: '1st', isWinner: true },
+    leftWinner: { name: 'THE PABX', unit: 'SDMK', score: '2nd' },
+    rightWinner: { name: 'THE ALTERNATIVE E-SPORT', unit: 'BKPK', score: '1st', isWinner: true },
   },
 
   leftBracket: [],
