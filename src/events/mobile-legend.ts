@@ -68,11 +68,11 @@ const mobileLegend: EventData = {
         { name: 'GALA SEGUNDA KOMUNITAS' }, { name: 'SINERGI SEHAT', isWinner: true },
         { name: 'LASKAR TENDER', isWinner: true }, { name: 'GALA PRIMERA KOMUNITAS' }
       ],
-      winner: { name: 'LASKAR TENDER', isWinner: true }
+      winner: { name: 'LASKAR TENDER', score: '3rd', isWinner: true }
     },
     // LEVEL 3: Finalist — tim yang maju ke final dari tiap sisi
-    //leftWinner: { name: 'Team 1', isWinner: true },
-    // rightWinner: { name: 'Nama Tim Kanan' },
+    leftWinner: { name: 'THE PABX', score: '2nd' },
+    rightWinner: { name: 'THE ALTERNATIVE E-SPORT', score: '1st', isWinner: true },
   },
 
   leftBracket: [],
